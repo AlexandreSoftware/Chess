@@ -15,5 +15,16 @@
             pecas[pos.Linha, pos.Coluna] = p;
             p.posicao = pos;
         }
+        public bool posicaovalida(Posicao pos) {
+            if (pos.Linha<0||pos.Linha>=linhas||pos.Coluna<0||pos.Coluna>=colunas) {
+                return false;
+            }
+            return true;
+        }
+        public void validarposicao(Posicao pos) {
+            if (!posicaovalida(pos)) {
+                throw new TabuleiroException
+            }
+        }
     }
 }
