@@ -11,6 +11,8 @@
             this.tab = tab;
             this.cor = cor;
             this.qtemovimentos = 0;
+
         }
+        
     }
 }
