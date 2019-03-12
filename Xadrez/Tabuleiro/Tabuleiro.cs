@@ -8,6 +8,14 @@
             this.linhas = linhas;
             pecas = new Peca[linhas, colunas];
         }
+
+        public bool existepeca(Posicao pos) {
+            existepeca(pos);
+            return peca(pos) != null;
+        }
+        public Peca peca(Posicao pos) {
+            return pecas[linhas, colunas];
+        }
         public Peca peca(int linha, int coluna) {
             return pecas[linha, coluna];
         }
@@ -23,7 +31,7 @@
         }
         public void validarposicao(Posicao pos) {
             if (!posicaovalida(pos)) {
-                throw new TabuleiroException
+                throw new TabuleiroException("Posição Invalida!"); 
             }
         }
     }

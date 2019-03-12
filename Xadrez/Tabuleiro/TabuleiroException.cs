@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tabuleiro {
+namespace tabuleiro {
     class TabuleiroException:Exception {
         public TabuleiroException(string msg) : base(msg) {
     
