@@ -6,6 +6,13 @@
         public Cor cor { get; protected set; }
         public int qtemovimentos { get; protected set; }
         public Tabuleiro tab { get; protected set; }
+         public Peca(Cor cor){
+            this.posicao =null;
+            this.tab = null;
+            this.cor = cor;
+            this.qtemovimentos = 0;
+
+        }
         public Peca(Tabuleiro tab,Cor cor){
             this.posicao = null;
             this.tab = tab;
