@@ -7,8 +7,8 @@ namespace Xadrez
     {
         static void Main(string[] args)
         {
-            PosicaoXadrez x = new PosicaoXadrez('c',1);             
-            System.Console.WriteLine(x);
+            PosicaoXadrez x = new PosicaoXadrez('a',1);             
+            System.Console.WriteLine(x.ToPosicao());
 
 
 
