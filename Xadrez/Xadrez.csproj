@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\Game.cs" />
-    <Compile Include="Game\GameLoop.cs" />
     <Compile Include="Game\Xadrez.cs" />
     <Compile Include="Pecas\Bispo.cs" />
     <Compile Include="Pecas\Cavalo.cs" />
@@ -58,7 +57,7 @@
     <Compile Include="Tabuleiro\PosicaoXadrez.cs" />
     <Compile Include="Tabuleiro\Tabuleiro.cs" />
     <Compile Include="Tabuleiro\TabuleiroException.cs" />
-    <Compile Include="Tabuleiro\Tela.cs" />
+    <Compile Include="Tela.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
