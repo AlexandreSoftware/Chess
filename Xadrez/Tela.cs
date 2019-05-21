@@ -91,6 +91,7 @@ namespace Xadrez {
         }
         public static PosicaoXadrez lerPosicaoXadrez() {
             string s = Console.ReadLine();
+            s=s.ToLower();
             if (s == "exit") {
                 Environment.Exit(0);
                 return null;
@@ -99,7 +100,7 @@ namespace Xadrez {
                 throw new TabuleiroException("Input invalido: tente novamente");
             }
             else {
-                s=s.ToLower();
+                
                 char coluna = s[0];
                 int linha = int.Parse(s[1] + "");
                 return new PosicaoXadrez(coluna, linha);
