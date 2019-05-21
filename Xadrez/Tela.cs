@@ -41,6 +41,43 @@ namespace Xadrez {
                 Console.WriteLine();
             }
          }
+         public static void posicoesPossiveis(Tabuleiro tab,bool[,] tabpossivel) {
+            Console.Clear();
+            if(tabpossivel!=null){
+            for (int i = 0; i < tab.linhas; i++) {
+                Console.Write(8 - i + " ");
+                for (int j = 0; j < tab.colunas; j++) {
+                    if (tab.peca(i, j) == null&&tabpossivel[i,j]==false) {
+                        
+                        Console.Write("- ");
+                    }
+                    else if (tab.peca(i, j) == null&&tabpossivel[i,j]==true) {
+                        ConsoleColor actualConsoleColor=Console.BackgroundColor;
+                        Console.BackgroundColor=ConsoleColor.Blue;
+                        Console.Write("- ");
+                        Console.BackgroundColor=actualConsoleColor;
+                    }
+                    else if(tab.peca(i, j) == null&&tabpossivel[i,j]==true){
+                        ConsoleColor actualConsoleColor=Console.BackgroundColor;
+                        Console.BackgroundColor=ConsoleColor.Blue;
+                        Console.Write("- ");
+                        Console.BackgroundColor=actualConsoleColor;
+                    }
+                    else {
+                        Tela.imprimirPeca(tab.peca(i, j));
+                        Console.Write(" ");
+                    }
+                    
+                }
+                Console.WriteLine();
+            }
+                    Console.WriteLine("  a b c d e f g h");
+            }
+            else{
+                imprimirxadrez(tab);
+            }
+            
+        }
         public static void imprimirPeca(Peca peca) {
             if (peca.cor == Cor.Branco) {
                 System.Console.Write(peca);
@@ -58,12 +95,17 @@ namespace Xadrez {
                 Environment.Exit(0);
                 return null;
             }
+            if(s==""||s==null){
+                throw new TabuleiroException("Input invalido: tente novamente");
+            }
             else {
+                s=s.ToLower();
                 char coluna = s[0];
                 int linha = int.Parse(s[1] + "");
                 return new PosicaoXadrez(coluna, linha);
             }
         }
+        
         public static void imprimirxadrezdelay(Tabuleiro tab){
             Console.Clear();
             for (int i = 0; i < tab.linhas; i++) {

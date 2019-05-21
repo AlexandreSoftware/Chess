@@ -26,20 +26,20 @@ namespace Xadrez {
                 foreach (Peca item in capturadosPretos) {
                     Console.Write(item+" ");
                 }
-                System.Console.Write("]");
+                Console.Write("]");
                 Console.ForegroundColor=consoleColor;
-                System.Console.WriteLine();
+                Console.WriteLine();
                 try{
-                System.Console.Write("Origem: ");
+                Console.Write("Origem: ");
                 init = Tela.lerPosicaoXadrez();
                 if (tab.posicaovalida(init.ToPosicao()) && tab.existepeca(init.ToPosicao())) {
                     Peca p1 = tab.peca(init.ToPosicao());
-                    System.Console.Write("Destino: ");
+                    bool[,]movimentospossivels=p1.movimentosPossiveis();
+                    Tela.posicoesPossiveis(tab,movimentospossivels);
+                    Console.Write("Destino: ");
                     PosicaoXadrez destino = Tela.lerPosicaoXadrez();
-
                     Peca p2 = tab.MoverPeca(init.ToPosicao(), destino.ToPosicao());
                     if (p2!=null) {
-
                         Cor p2cor = p2.cor;
                         if (p2cor == Cor.Branco) {
                             capturadosBrancos.Add(p2);
@@ -56,7 +56,7 @@ namespace Xadrez {
                 }
                 }
                 catch(TabuleiroException e){
-                        System.Console.WriteLine(e.Message);
+                        Console.WriteLine(e.Message);
                         Console.ReadKey();
                 }
             }
@@ -89,7 +89,6 @@ namespace Xadrez {
         Tela.imprimirxadrezdelay(tab);
 
     }
-
 } 
 }
 

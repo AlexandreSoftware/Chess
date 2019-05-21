@@ -22,7 +22,7 @@
             if(existepeca(pos)){
                 throw new TabuleiroException("Ja existe uma peça nessa posiçao");
             }
-
+            
             pecas[pos.Linha, pos.Coluna] = p;
             p.posicao = pos;
       
@@ -48,15 +48,11 @@
         public Peca MoverPeca(Posicao initPos,Posicao endPos) {
             
             if (posicaovalida(endPos)) {
-                Peca p1;
-                if(peca(endPos)!=null){
-                    if(peca(initPos).cor==peca(endPos).cor){
-                    throw new TabuleiroException("O local onde a peça esta tentando se mover é ocupado por uma peca da mesma cor");
-                    }
-                }    
+                Peca p1;   
                 p1 = retirarPeca(endPos);
                 colocarPeca(peca(initPos),endPos);
                 retirarPeca(initPos);
+                peca(endPos).posicao=endPos;
                 return p1;
             }          
             return null;
