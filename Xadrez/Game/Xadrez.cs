@@ -45,10 +45,6 @@ namespace Xadrez {
                 }
             }
         }
-        
-        
-    
-
 
     public static void MontarTabuleiro(Tabuleiro tab) {
         Tela.imprimirtabuleiro(tab);

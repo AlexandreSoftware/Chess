@@ -1,7 +1,7 @@
 ﻿using System;
 using tabuleiro;
 using System.Threading;
-
+using System.IO;
 namespace Xadrez {
     class Tela {
         public static void imprimirxadrez(Tabuleiro tab) {
