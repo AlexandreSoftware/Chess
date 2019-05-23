@@ -11,11 +11,11 @@ namespace Xadrez {
             List<Peca> capturadosPretos = new List<Peca>();
             Tabuleiro tab = new Tabuleiro(8, 8);
             Cor jogadoratual=Cor.Branco;
+            
+            int turno=0;
             MontarTabuleiro(tab);
-
-            Console.Clear();
             while (!gameIsFinished) {
-                
+                Console.Clear();
                 Tela.imprimirxadrez(tab);
                 Console.Write("PECAS Brancas:[");
                 foreach (Peca item in capturadosBrancos) {
@@ -30,7 +30,8 @@ namespace Xadrez {
                 }
                 Console.Write("]");
                 Console.ForegroundColor=consoleColor;
-                Console.WriteLine();
+                Console.WriteLine("\nJogador atual: {0}",jogadoratual);
+                System.Console.WriteLine("Turno:{0}",turno);
                 try{
                     Console.Write("Origem: ");
                     init = Tela.lerPosicaoXadrez();
@@ -41,7 +42,7 @@ namespace Xadrez {
                             Tela.posicoesPossiveis(tab,movimentospossivels);
                             Console.Write("Destino: ");
                             PosicaoXadrez destino = Tela.lerPosicaoXadrez();
-                            if(movimentospossivels[destino.Linha,destino.Linha]==true){
+                            if(movimentospossivels[destino.ToPosicao().Linha,destino.ToPosicao().Coluna]==true){
                                 Peca p2 = tab.MoverPeca(init.ToPosicao(), destino.ToPosicao());
                                 if (p2!=null) {
                                     Cor p2cor = p2.cor;
@@ -52,25 +53,25 @@ namespace Xadrez {
                                         capturadosPretos.Add(p2);
                                     }
                                 }
+                                jogadoratual= passarturno(jogadoratual);              
+                            }
+                            
+                            else {
+                                throw new TabuleiroException("Movimento Impossivel: Destino invalido, pressione qualquer tecla para continuar");            
                                 
                             }
-                            else {
-                                Console.WriteLine("Movimento Impossivel: Destino invalido, pressione qualquer tecla para continuar");            
-                                Console.ReadKey();
-                            }
-                        
+                            
                         }
                         else{
-                            throw new TabuleiroException("Jogada invalida:nao e sua vez de jogar");
+                            throw new TabuleiroException("Jogada invalida:nao e sua vewz de jogar");
                         }                    
                     }
                     
                         
                         
                         else{
-                            Console.WriteLine("input invalido, tente novamente");
-                            Console.ReadKey();
-                                
+                            throw new TabuleiroException("input invalido, tente novamente");
+                                                            
                         }
                 }
                 catch(TabuleiroException e){
@@ -82,7 +83,6 @@ namespace Xadrez {
         }
 
     public static void MontarTabuleiro(Tabuleiro tab) {
-        Tela.imprimirtabuleiro(tab);
         for (char i = 'a'; i < 'h' + 1; i++) {
             tab.colocarPeca(new Peao(tab, Cor.Branco), new PosicaoXadrez(i, 2).ToPosicao());
             tab.colocarPeca(new Peao(tab, Cor.Preto), new PosicaoXadrez(i, 7).ToPosicao());
@@ -108,13 +108,14 @@ namespace Xadrez {
         Tela.imprimirxadrezdelay(tab);
 
     }
-    static void passarturno(Cor jogadoratual){
+    static Cor passarturno(Cor jogadoratual){
         if(jogadoratual==Cor.Branco){
             jogadoratual=Cor.Preto;
         }
-        if(jogadoratual==Cor.Preto){
+        else if(jogadoratual==Cor.Preto){
             jogadoratual=Cor.Branco;
         }
+        return jogadoratual;
     }
 } 
 }

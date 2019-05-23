@@ -10,7 +10,7 @@ namespace tabuleiro
         public Tabuleiro tab { get; protected set; }
         protected bool podeMover(Posicao pos){
             Peca p = tab.peca(pos);
-            return p==null||p.cor!=this.cor;
+            return p==null||p.cor!=cor;
         }
          public Peca(Cor cor){
             this.posicao =null;
