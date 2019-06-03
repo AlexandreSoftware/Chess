@@ -3,7 +3,7 @@
         public int Linha { get; set; }
         public int Coluna { get; set; }
 
-        public void definirvalores(int Linha,int Coluna){     
+        public void definirValores(int Linha,int Coluna){     
             this.Coluna= Coluna;
             this.Linha = Linha;
            

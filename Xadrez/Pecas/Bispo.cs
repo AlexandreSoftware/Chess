@@ -12,13 +12,13 @@ namespace Xadrez {
             Posicao pos= new Posicao(posicao.Linha,posicao.Coluna);
             //NE
             validator=true;
-            pos.definirvalores(posicao.Linha,posicao.Coluna);
+            pos.definirValores(posicao.Linha,posicao.Coluna);
             while(validator==true){
-                pos.definirvalores(pos.Linha-1,pos.Coluna-1);
-                if(tab.posicaovalida(pos)&&podeMover(pos)){
+                pos.definirValores(pos.Linha-1,pos.Coluna-1);
+                if(tab.posicaoValida(pos)&&podeMover(pos)){
                     mat[pos.Linha,pos.Coluna]=true;
                 }
-                else if(tab.posicaovalida(pos)==true&&podeMover(pos)==false){
+                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
                     validator=false;
                 }
                 else{
@@ -27,13 +27,13 @@ namespace Xadrez {
             }
             //NW
             validator=true;
-            pos.definirvalores(posicao.Linha,posicao.Coluna);
+            pos.definirValores(posicao.Linha,posicao.Coluna);
             while(validator==true){
-                pos.definirvalores(pos.Linha-1,pos.Coluna+1);
-                if(tab.posicaovalida(pos)&&podeMover(pos)){
+                pos.definirValores(pos.Linha-1,pos.Coluna+1);
+                if(tab.posicaoValida(pos)&&podeMover(pos)){
                     mat[pos.Linha,pos.Coluna]=true;
                 }
-                else if(tab.posicaovalida(pos)==true&&podeMover(pos)==false){
+                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
                     validator=false;
                 }
                 else{
@@ -41,14 +41,14 @@ namespace Xadrez {
                 }
             }
             //SE
-            pos.definirvalores(posicao.Linha,posicao.Coluna);
+            pos.definirValores(posicao.Linha,posicao.Coluna);
             validator=true;
             while(validator==true){
-                pos.definirvalores(pos.Linha+1,pos.Coluna-1);
-                if(tab.posicaovalida(pos)&&podeMover(pos)){
+                pos.definirValores(pos.Linha+1,pos.Coluna-1);
+                if(tab.posicaoValida(pos)&&podeMover(pos)){
                     mat[pos.Linha,pos.Coluna]=true;
                 }
-                else if(tab.posicaovalida(pos)==true&&podeMover(pos)==false){
+                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
                     validator=false;
                 }
                 else{
@@ -56,16 +56,16 @@ namespace Xadrez {
                 }
             }
             //SW
-            pos.definirvalores(posicao.Linha,posicao.Coluna);
+            pos.definirValores(posicao.Linha,posicao.Coluna);
             validator=true;
             while(validator==true){
                 
                 
-                pos.definirvalores(pos.Linha+1,pos.Coluna+1);
-                if(tab.posicaovalida(pos)&&podeMover(pos)){
+                pos.definirValores(pos.Linha+1,pos.Coluna+1);
+                if(tab.posicaoValida(pos)&&podeMover(pos)){
                     mat[pos.Linha,pos.Coluna]=true;
                 }
-                else if(tab.posicaovalida(pos)==true&&podeMover(pos)==false){
+                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
                     validator=false;
                 }
                 else{
