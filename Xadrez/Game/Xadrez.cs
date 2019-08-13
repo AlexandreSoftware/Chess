@@ -10,9 +10,7 @@ namespace Xadrez {
             List<Peca> capturadosBrancos = new List<Peca>();
             List<Peca> capturadosPretos = new List<Peca>();
             Tabuleiro tab = new Tabuleiro(8, 8);
-            int Turno=0;
             MontarTabuleiro(tab);
-
             Console.Clear();
             while (!gameIsFinished) {
                 
@@ -32,49 +30,36 @@ namespace Xadrez {
                 Console.ForegroundColor=consoleColor;
                 Console.WriteLine();
                 try{
-                    Console.Write("Origem: ");
-                    init = Tela.lerPosicaoXadrez();
-                    if (tab.posicaovalida(init.ToPosicao()) && tab.existepeca(init.ToPosicao())) {
-                        Peca p1 = tab.peca(init.ToPosicao());
-                        bool[,]movimentospossivels=p1.movimentosPossiveis();
-                        Tela.posicoesPossiveis(tab,movimentospossivels);
-                        Console.Write("Destino: ");
-                        PosicaoXadrez destino = Tela.lerPosicaoXadrez();
-                        if(movimentospossivels[destino.Linha,destino.Linha]==true){
-                            Peca p2 = tab.MoverPeca(init.ToPosicao(), destino.ToPosicao());
-                            if (p2!=null) {
-                                Cor p2cor = p2.cor;
-                                if (p2cor == Cor.Branco) {
-                                    capturadosBrancos.Add(p2);
-                                }
-                                else {
-                                    capturadosPretos.Add(p2);
-                                }
-                                Turno++;
-                            }
-                            
-                    }
-                    else {
-                        Console.WriteLine("Movimento Impossivel: Destino invalido, pressione qualquer tecla para continuar");            
-                        Console.ReadKey();
-                        
-                                            
+                Console.Write("Origem: ");
+                init = Tela.lerPosicaoXadrez();
+                if (tab.posicaovalida(init.ToPosicao()) && tab.existepeca(init.ToPosicao())) {
+                    Peca p1 = tab.peca(init.ToPosicao());
+                    bool[,]movimentospossivels=p1.movimentosPossiveis();
+                    Tela.posicoesPossiveis(tab,movimentospossivels);
+                    Console.Write("Destino: ");
+                    PosicaoXadrez destino = Tela.lerPosicaoXadrez();
+                    Peca p2 = tab.MoverPeca(init.ToPosicao(), destino.ToPosicao());
+                    if (p2!=null) {
+                        Cor p2cor = p2.cor;
+                        if (p2cor == Cor.Branco) {
+                            capturadosBrancos.Add(p2);
+                        }
+                        else {
+                            capturadosPretos.Add(p2);
+                        }
                     }
                     
-                    }
-                    
-                    else{
+                }
+                else {
                         Console.WriteLine("input invalido, tente novamente");
                         Console.ReadKey();
-                            
-                    }
+                }
                 }
                 catch(TabuleiroException e){
                         Console.WriteLine(e.Message);
                         Console.ReadKey();
                 }
             }
-
         }
 
     public static void MontarTabuleiro(Tabuleiro tab) {

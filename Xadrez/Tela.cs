@@ -74,7 +74,7 @@ namespace Xadrez {
                     Console.WriteLine("  a b c d e f g h");
             }
             else{
-                throw new TabuleiroException("ERRO:nao existe uma matriz");
+                imprimirxadrez(tab);
             }
             
         }
