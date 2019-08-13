@@ -4,7 +4,7 @@ using System.Threading;
 using System.IO;
 namespace Xadrez {
     class Tela {
-        public static void imprimirXadrez(Tabuleiro tab) {
+        public static void imprimirxadrez(Tabuleiro tab) {
             Console.Clear();
             for (int i = 0; i < tab.linhas; i++) {
                 System.Console.Write(8 - i + " ");
@@ -23,7 +23,7 @@ namespace Xadrez {
             }
             Console.WriteLine("  a b c d e f g h");
         }
-        public static void imprimirTabuleiro(Tabuleiro tab) {
+        public static void imprimirtabuleiro(Tabuleiro tab) {
             Console.Clear();
             for (int i = 0; i < tab.linhas; i++) {
                 
@@ -107,7 +107,7 @@ namespace Xadrez {
             }
         }
         
-        public static void imprimirXadrezdelay(Tabuleiro tab){
+        public static void imprimirxadrezdelay(Tabuleiro tab){
             Console.Clear();
             for (int i = 0; i < tab.linhas; i++) {
                 Thread.Sleep(10);
