@@ -10,7 +10,7 @@ namespace Xadrez
             
             Game jogo = new Xadrez();
             jogo.GameLoop();
-            
+            Console.ReadKey();
 
         }
     }

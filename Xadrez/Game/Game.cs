@@ -2,7 +2,9 @@
 using tabuleiro;
 
 namespace Xadrez {
-    abstract class Game {
-        public abstract void GameLoop();
+    class Game {
+        public virtual void GameLoop(){
+
+        }
     }
 }
