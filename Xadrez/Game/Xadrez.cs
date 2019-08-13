@@ -10,7 +10,7 @@ namespace Xadrez {
             List<Peca> capturadosBrancos = new List<Peca>();
             List<Peca> capturadosPretos = new List<Peca>();
             Tabuleiro tab = new Tabuleiro(8, 8);
-            int Turno=0;
+            Cor jogadoratual=Cor.Branco;
             MontarTabuleiro(tab);
 
             Console.Clear();
@@ -35,39 +35,43 @@ namespace Xadrez {
                     Console.Write("Origem: ");
                     init = Tela.lerPosicaoXadrez();
                     if (tab.posicaovalida(init.ToPosicao()) && tab.existepeca(init.ToPosicao())) {
-                        Peca p1 = tab.peca(init.ToPosicao());
-                        bool[,]movimentospossivels=p1.movimentosPossiveis();
-                        Tela.posicoesPossiveis(tab,movimentospossivels);
-                        Console.Write("Destino: ");
-                        PosicaoXadrez destino = Tela.lerPosicaoXadrez();
-                        if(movimentospossivels[destino.Linha,destino.Linha]==true){
-                            Peca p2 = tab.MoverPeca(init.ToPosicao(), destino.ToPosicao());
-                            if (p2!=null) {
-                                Cor p2cor = p2.cor;
-                                if (p2cor == Cor.Branco) {
-                                    capturadosBrancos.Add(p2);
+                        if(tab.peca(init.ToPosicao()).cor==jogadoratual){
+                            Peca p1 = tab.peca(init.ToPosicao());
+                            bool[,]movimentospossivels=p1.movimentosPossiveis();
+                            Tela.posicoesPossiveis(tab,movimentospossivels);
+                            Console.Write("Destino: ");
+                            PosicaoXadrez destino = Tela.lerPosicaoXadrez();
+                            if(movimentospossivels[destino.Linha,destino.Linha]==true){
+                                Peca p2 = tab.MoverPeca(init.ToPosicao(), destino.ToPosicao());
+                                if (p2!=null) {
+                                    Cor p2cor = p2.cor;
+                                    if (p2cor == Cor.Branco) {
+                                        capturadosBrancos.Add(p2);
+                                    }
+                                    else {
+                                        capturadosPretos.Add(p2);
+                                    }
                                 }
-                                else {
-                                    capturadosPretos.Add(p2);
-                                }
-                                Turno++;
+                                
                             }
-                            
-                    }
-                    else {
-                        Console.WriteLine("Movimento Impossivel: Destino invalido, pressione qualquer tecla para continuar");            
-                        Console.ReadKey();
+                            else {
+                                Console.WriteLine("Movimento Impossivel: Destino invalido, pressione qualquer tecla para continuar");            
+                                Console.ReadKey();
+                            }
                         
-                                            
+                        }
+                        else{
+                            throw new TabuleiroException("Jogada invalida:nao e sua vez de jogar");
+                        }                    
                     }
                     
-                    }
-                    
-                    else{
-                        Console.WriteLine("input invalido, tente novamente");
-                        Console.ReadKey();
-                            
-                    }
+                        
+                        
+                        else{
+                            Console.WriteLine("input invalido, tente novamente");
+                            Console.ReadKey();
+                                
+                        }
                 }
                 catch(TabuleiroException e){
                         Console.WriteLine(e.Message);
@@ -103,6 +107,14 @@ namespace Xadrez {
         tab.colocarPeca(new Torre(tab, Cor.Branco), new PosicaoXadrez('h', 1).ToPosicao());
         Tela.imprimirxadrezdelay(tab);
 
+    }
+    static void passarturno(Cor jogadoratual){
+        if(jogadoratual==Cor.Branco){
+            jogadoratual=Cor.Preto;
+        }
+        if(jogadoratual==Cor.Preto){
+            jogadoratual=Cor.Branco;
+        }
     }
 } 
 }
