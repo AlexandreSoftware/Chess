@@ -8,7 +8,7 @@ namespace Xadrez
         static void Main(string[] args)
         {
             
-            Game jogo = new Xadrez();
+            Xadrez jogo = new Xadrez();
             jogo.GameLoop();
             
 
