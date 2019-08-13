@@ -3,8 +3,8 @@ using tabuleiro;
 using System.Threading;
 using System.Collections.Generic;
 namespace Xadrez {
-    class Xadrez : Game {
-        public override void GameLoop() {
+    class Xadrez{
+        public  void GameLoop() {
             bool gameIsFinished = false;
             PosicaoXadrez init;
             List<Peca> capturadosBrancos = new List<Peca>();
@@ -16,7 +16,7 @@ namespace Xadrez {
             MontarTabuleiro(tab);
             while (!gameIsFinished) {
                 Console.Clear();
-                Tela.imprimirxadrez(tab);
+                Tela.imprimirXadrez(tab);
                 Console.Write("PECAS Brancas:[");
                 foreach (Peca item in capturadosBrancos) {
                     Console.Write(item+" ");
@@ -35,7 +35,7 @@ namespace Xadrez {
                 try{
                     Console.Write("Origem: ");
                     init = Tela.lerPosicaoXadrez();
-                    if (tab.posicaovalida(init.ToPosicao()) && tab.existepeca(init.ToPosicao())) {
+                    if (tab.posicaoValida(init.ToPosicao()) && tab.existePeca(init.ToPosicao())) {
                         if(tab.peca(init.ToPosicao()).cor==jogadoratual){
                             Peca p1 = tab.peca(init.ToPosicao());
                             bool[,]movimentospossivels=p1.movimentosPossiveis();
@@ -43,7 +43,7 @@ namespace Xadrez {
                             Console.Write("Destino: ");
                             PosicaoXadrez destino = Tela.lerPosicaoXadrez();
                             if(movimentospossivels[destino.ToPosicao().Linha,destino.ToPosicao().Coluna]==true){
-                                Peca p2 = tab.MoverPeca(init.ToPosicao(), destino.ToPosicao());
+                                Peca p2 = tab.moverPeca(init.ToPosicao(), destino.ToPosicao());
                                 if (p2!=null) {
                                     Cor p2cor = p2.cor;
                                     if (p2cor == Cor.Branco) {
@@ -105,7 +105,7 @@ namespace Xadrez {
         tab.colocarPeca(new Bispo(tab, Cor.Branco), new PosicaoXadrez('f', 1).ToPosicao());
         tab.colocarPeca(new Cavalo(tab, Cor.Branco), new PosicaoXadrez('g', 1).ToPosicao());
         tab.colocarPeca(new Torre(tab, Cor.Branco), new PosicaoXadrez('h', 1).ToPosicao());
-        Tela.imprimirxadrezdelay(tab);
+        Tela.imprimirXadrezdelay(tab);
 
     }
     static Cor passarturno(Cor jogadoratual){
