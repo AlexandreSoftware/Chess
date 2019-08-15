@@ -68,7 +68,7 @@ namespace Xadrez {
                     return movimentosPossiveis;       
                 }
                 else{
-                    throw new TabuleiroException("Jogada invalida:nao e sua vewz de jogar");
+                    throw new TabuleiroException("Jogada invalida:nao e sua vez de jogar");
                 }                    
             }
             else{

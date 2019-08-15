@@ -1,49 +1,49 @@
 ﻿using tabuleiro;
 namespace Xadrez {
     class Peao : Peca {
-        public Peao(Tabuleiro tab, Cor cor) : base(tab, cor) {
-            qteMovimentos=2;
-        }
+        public Peao(Tabuleiro tab, Cor cor) : base(tab, cor) {}
         public override bool[,] movimentosPossiveis(){
             bool[,] mat= new bool[tab.linhas,tab.colunas];
             Posicao pos=new Posicao(0,0);
-            if(qteMovimentos==2){
-                if(cor==Cor.Branco){
-                    pos.definirValores(posicao.Linha-1,posicao.Coluna);
-                    
-                    if(tab.posicaoValida(pos)&&podeMover(pos)){
+            if(cor==Cor.Branco){
+                pos.definirValores(posicao.Linha-1,posicao.Coluna);
+                if(tab.posicaoValida(pos)&&podeMover(pos)&&!tab.existePeca(pos)){
                         mat[pos.Linha,pos.Coluna]=true;
-                    }
-                    pos.definirValores(pos.Linha-1,pos.Coluna);
-                    if(tab.posicaoValida(pos)&&podeMover(pos)){
-                        mat[pos.Linha,pos.Coluna]=true;
-                    }
                 }
-                else{
-                    pos.definirValores(posicao.Linha+1,posicao.Coluna);
-                    if(tab.posicaoValida(pos)&&podeMover(pos)){
+                pos.definirValores(pos.Linha,pos.Coluna-1);
+                if(tab.posicaoValida(pos)&&podeMover(pos)&&tab.existePeca(pos)){
                         mat[pos.Linha,pos.Coluna]=true;
-                    }
-                    pos.definirValores(pos.Linha+1,posicao.Coluna);
-                    if(tab.posicaoValida(pos)&&podeMover(pos)){
-                        mat[pos.Linha,pos.Coluna]=true;
-                    }
                 }
+                pos.definirValores(pos.Linha,pos.Coluna+2);
+                if(tab.posicaoValida(pos)&&podeMover(pos)&&tab.existePeca(pos)){
+                        mat[pos.Linha,pos.Coluna]=true;
+                }
+                if(qteMovimentos==0){
+                    pos.definirValores(posicao.Linha-2,posicao.Coluna);
+                    if(tab.posicaoValida(pos)&&podeMover(pos)&&!tab.existePeca(pos)){
+                            mat[pos.Linha,pos.Coluna]=true;
+                    }
+                }            
             }
             else{
-                if(cor==Cor.Branco){
-                pos.definirValores(posicao.Linha-1,posicao.Coluna);
-                
-                if(tab.posicaoValida(pos)&&podeMover(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.definirValores(posicao.Linha+1,posicao.Coluna);
+                if(tab.posicaoValida(pos)&&podeMover(pos)&&!tab.existePeca(pos)){
+                        mat[pos.Linha,pos.Coluna]=true;
                 }
+                pos.definirValores(pos.Linha,pos.Coluna-1);
+                if(tab.posicaoValida(pos)&&podeMover(pos)&&tab.existePeca(pos)){
+                        mat[pos.Linha,pos.Coluna]=true;
                 }
-                else{
-                    pos.definirValores(posicao.Linha+1,posicao.Coluna);
-                    if(tab.posicaoValida(pos)&&podeMover(pos)){
+                pos.definirValores(pos.Linha,pos.Coluna+2);
+                if(tab.posicaoValida(pos)&&podeMover(pos)&&tab.existePeca(pos)){
+                        mat[pos.Linha,pos.Coluna]=true;
+                }
+                if(qteMovimentos==0){
+                    pos.definirValores(posicao.Linha+2,posicao.Coluna);
+                    if(tab.posicaoValida(pos)&&podeMover(pos)&&!tab.existePeca(pos)){
                         mat[pos.Linha,pos.Coluna]=true;
                     }
-                }
+                }            
             }
             return mat;
         }
