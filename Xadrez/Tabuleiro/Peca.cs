@@ -27,7 +27,9 @@ namespace tabuleiro
 
         }
         public abstract bool[,] movimentosPossiveis();
-        
+        public void incrementarQteMovimentos(){
+            qteMovimentos++;
+        }        
     }
 }
 
