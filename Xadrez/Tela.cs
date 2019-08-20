@@ -101,10 +101,9 @@ namespace Xadrez {
                 throw new TabuleiroException("Input invalido: tente novamente");
             }
             else {
-                //
                 char coluna = s[0];
                 bool val=int.TryParse(s[1] + "",out int linha);
-                if(val=false){
+                if(val==false){
                     throw new TabuleiroException("Input invalido: tente novamente");
                 }
                 return new PosicaoXadrez(coluna, linha);
