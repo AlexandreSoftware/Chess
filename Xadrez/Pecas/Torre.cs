@@ -67,8 +67,32 @@ namespace Xadrez {
                     validator=false;
                 }
             }
-            
-            
+            pos.definirValores(posicao.Linha,posicao.Coluna);
+            if(qteMovimentos==0){
+                validator=true;
+                //East
+                while(validator==true){
+                    pos.definirValores(pos.Linha,pos.Coluna-1);
+                    if(tab.posicaoValida(pos)&&tab.peca(pos) is Rei&&tab.peca(pos).qteMovimentos==0&&tab.peca(pos).cor==cor){
+                        mat[pos.Linha,pos.Coluna]=true;
+                    }
+                    else if(!tab.posicaoValida(pos)==true){
+                        validator=false;
+                    }
+                }
+                validator=true;
+                //WEST
+                pos.definirValores(posicao.Linha,posicao.Coluna);
+                while(validator==true){
+                    pos.definirValores(pos.Linha,pos.Coluna+1);
+                    if(tab.posicaoValida(pos)&&tab.peca(pos) is Rei&&tab.peca(pos).qteMovimentos==0&&tab.peca(pos).cor==cor){
+                        mat[pos.Linha,pos.Coluna]=true;
+                    }
+                    else if(!tab.posicaoValida(pos)==true){
+                        validator=false;
+                    }
+                }
+            }
             return mat;
         }
         public override string ToString() {

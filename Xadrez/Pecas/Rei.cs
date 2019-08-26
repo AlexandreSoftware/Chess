@@ -51,6 +51,7 @@ namespace Xadrez {
                 
                 mat[pos.Linha,pos.Coluna]=true;
             }
+            pos.definirValores(posicao.Linha,posicao.Coluna);
             if(qteMovimentos==0){
                 bool validator=true;
                 //East
@@ -58,6 +59,9 @@ namespace Xadrez {
                     pos.definirValores(pos.Linha,pos.Coluna-1);
                     if(tab.posicaoValida(pos)&&tab.peca(pos) is Torre&&tab.peca(pos).qteMovimentos==0&&tab.peca(pos).cor==cor){
                         mat[pos.Linha,pos.Coluna]=true;
+                    }
+                    if(tab.posicaoValida(pos)&&!podeMover(pos)){
+                        validator=false;
                     }
                     else if(!tab.posicaoValida(pos)==true){
                         validator=false;
@@ -71,12 +75,14 @@ namespace Xadrez {
                     if(tab.posicaoValida(pos)&&tab.peca(pos) is Torre&&tab.peca(pos).qteMovimentos==0&&tab.peca(pos).cor==cor){
                         mat[pos.Linha,pos.Coluna]=true;
                     }
+                    if(tab.posicaoValida(pos)&&!podeMover(pos)){
+                        validator=false;
+                    }
                     else if(!tab.posicaoValida(pos)==true){
                         validator=false;
                     }
                 }
             }
-            pos.definirValores(0,0);
             return mat;
         }
         public override string ToString() {

@@ -127,10 +127,11 @@ namespace Xadrez {
             }
         }
         private Peca executarMovimento(bool[,] movimentosPossiveis,Posicao init,Posicao dest){
-            if(movimentosPossiveis[dest.Linha,dest.Coluna]==true&&tab.peca(dest)!=null&&tab.peca(dest.Linha,dest.Coluna).cor==tab.peca(init).cor){
+            if(movimentosPossiveis[dest.Linha,dest.Coluna]==true&&tab.peca(dest)!=null&&tab.peca(init).cor==tab.peca(dest).cor){
                 Peca p2 = tab.moverPeca(init, dest);
-                adicionarPeca(p2,init);
-                return null;
+                tab.colocarPeca(p2,init);
+                p2.incrementarQteMovimentos();
+                return null;                
             }
             if(movimentosPossiveis[dest.Linha,dest.Coluna]==true){
                 Peca p2 = tab.moverPeca(init, dest);
