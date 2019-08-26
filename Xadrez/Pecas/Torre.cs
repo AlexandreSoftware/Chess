@@ -67,6 +67,8 @@ namespace Xadrez {
                     validator=false;
                 }
             }
+            
+            
             return mat;
         }
         public override string ToString() {

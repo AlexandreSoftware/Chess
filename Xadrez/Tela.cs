@@ -102,6 +102,7 @@ namespace Xadrez {
             }
             else {
                 char coluna = s[0];
+                
                 bool val=int.TryParse(s[1] + "",out int linha);
                 if(val==false){
                     throw new TabuleiroException("Input invalido: tente novamente");
