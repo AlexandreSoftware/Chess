@@ -13,6 +13,7 @@ namespace Xadrez {
         int turno;
         bool[,] movimentosPossiveis;
         public Cor? corXeque;
+        public bool ocorreuRoque;
  
         public Xadrez(){
             this.gameIsFinished = false;
@@ -24,6 +25,7 @@ namespace Xadrez {
             this.turno=0;
             this.corXeque=null;
             this.movimentosPossiveis=null;
+            ocorreuRoque=true;
         }
         private void montarTela(){
             Console.Clear();
@@ -98,6 +100,9 @@ namespace Xadrez {
                 corXeque=null;
             }
             if(corXeque!=null){
+                if(ocorreuRoque==true){
+                    tab.peca(dest.ToPosicao()).decrementarQteMovimentos();
+                }
                 gameIsFinished=testeXequeMate(adversaria((Cor)corXeque));
                 if(gameIsFinished){
                     throw new TabuleiroException("Jogo Finalizado, O vencedor foi: "+adversaria((Cor)corXeque));
@@ -130,12 +135,13 @@ namespace Xadrez {
             if(movimentosPossiveis[dest.Linha,dest.Coluna]==true&&tab.peca(dest)!=null&&tab.peca(init).cor==tab.peca(dest).cor){
                 Peca p2 = tab.moverPeca(init, dest);
                 tab.colocarPeca(p2,init);
+                ocorreuRoque=true;
                 p2.incrementarQteMovimentos();
                 return null;                
             }
             if(movimentosPossiveis[dest.Linha,dest.Coluna]==true){
                 Peca p2 = tab.moverPeca(init, dest);
-                
+                ocorreuRoque=false;
                 return p2;
             }
             else {
@@ -186,7 +192,6 @@ namespace Xadrez {
             Peca R=rei(cor);
             foreach(Peca peca in pecasEmJogo(adversaria(cor))){
                 bool[,] mat=peca.movimentosPossiveis();
-                Tela.posicoesPossiveis(tab,mat);
                 if(mat[R.posicao.Linha,R.posicao.Coluna]){
                     return true;
                 }
@@ -205,7 +210,6 @@ namespace Xadrez {
                                 Posicao init=new Posicao(item.posicao.Linha,item.posicao.Coluna);
                                 Peca PecaCapturada = executarMovimento(mat,item.posicao,new Posicao(i,j));
                                 bool xeque= estaEmXeque((Cor)corXeque);
-                                Tela.posicoesPossiveis(tab,mat);
                                 desfazMovimento(PecaCapturada,item.posicao,init);
                                 if(!xeque){
                                     return false;
