@@ -108,6 +108,9 @@ namespace Xadrez {
                     throw new TabuleiroException("Jogo Finalizado, O vencedor foi: "+adversaria((Cor)corXeque));
                 }
             }
+            if(tab.promocao!=null&&tab.promocao==dest.ToPosicao()){
+                promocao(tab.peca(dest.ToPosicao()),init.ToPosicao(),dest.ToPosicao());
+            }
             turno++;
             passarturno();
         }
@@ -116,6 +119,7 @@ namespace Xadrez {
             if(PecaCapturada!=null){
                 tab.moverPeca(dest,init);
                 tab.colocarPeca(PecaCapturada,dest);
+                pecas.Add(PecaCapturada);
             }
             else{
                 tab.moverPeca(dest,init);
@@ -142,6 +146,9 @@ namespace Xadrez {
             if(movimentosPossiveis[dest.Linha,dest.Coluna]==true){
                 Peca p2 = tab.moverPeca(init, dest);
                 ocorreuRoque=false;
+                if(p2!=null){
+                    pecas.Remove(p2);
+                }
                 return p2;
             }
             else {
@@ -183,7 +190,6 @@ namespace Xadrez {
             foreach(Peca x in pecas){
                 if(x.cor==cor){
                     pecasEmJogo.Add(x);
-                    
                 } 
             }
             return pecasEmJogo;
@@ -221,6 +227,63 @@ namespace Xadrez {
                 }
             }
             return true;
+        }
+        private void promocao(Peca p,Posicao init,Posicao dest){
+            Console.Clear();
+            Tela.imprimirXadrezdelay(tab);
+            Console.WriteLine("PROMOCÃO: Escolha a peca:");
+            Console.WriteLine("1-Torre\n2-Bispo\n3-Cavalo\n4-Dama");
+            char a =Console.ReadKey().KeyChar;
+            if(Char.IsDigit(a)){
+                bool val=true;
+                Peca temp;
+                if(int.TryParse(a.ToString(),out int i)){
+                    while(val){
+                    
+                        switch (i)
+                        {
+                            case 1:
+                                temp =tab.retirarPeca(dest);
+                                pecas.Remove(temp);                                
+                                adicionarPeca(new Torre(tab,temp.cor),temp.posicao);
+                                while(temp.qteMovimentos!=tab.peca(dest).qteMovimentos){
+                                    tab.peca(dest).incrementarQteMovimentos();
+                                }
+                            break;
+                            case 2:
+                                temp =tab.retirarPeca(dest);
+                                pecas.Remove(temp);                                
+                                adicionarPeca(new Bispo(tab,temp.cor),temp.posicao);
+                                while(temp.qteMovimentos!=tab.peca(dest).qteMovimentos){
+                                    tab.peca(dest).incrementarQteMovimentos();
+                                }
+                            break;
+                            case 3:
+                                temp =tab.retirarPeca(dest);
+                                pecas.Remove(temp);                                
+                                adicionarPeca(new Cavalo(tab,temp.cor),temp.posicao);
+                                while(temp.qteMovimentos!=tab.peca(dest).qteMovimentos){
+                                    tab.peca(dest).incrementarQteMovimentos();
+                                }
+                            break;
+                            
+                            case 4:
+                                temp =tab.retirarPeca(dest);
+                                pecas.Remove(temp);                                
+                                adicionarPeca(new Rainha(tab,temp.cor),temp.posicao);
+                                while(temp.qteMovimentos!=tab.peca(dest).qteMovimentos){
+                                    tab.peca(dest).incrementarQteMovimentos();
+                                }
+                            break;
+                            
+                            default:
+                                Console.WriteLine("ERRO: Input Invalido");
+                            break;
+                            
+                        }
+                    }
+                }
+            }
         }
 
         private void adicionarPeca(Peca peca, Posicao pos){
