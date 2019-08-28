@@ -33,6 +33,13 @@ namespace tabuleiro
         public void decrementarQteMovimentos(){
             qteMovimentos--;
         }        
+        protected bool ePecaInimiga(Posicao pos){
+            Peca p2= tab.peca(pos);
+            if(p2!=null){
+                return p2.cor!=cor;
+            }
+            return false;
+        }
 
     }
 }

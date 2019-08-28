@@ -1,7 +1,9 @@
-﻿using tabuleiro;
-namespace Xadrez {
+﻿namespace tabuleiro {
     class Peao : Peca {
-        public Peao(Tabuleiro tab, Cor cor) : base(tab, cor) {}
+        
+        public Peao(Tabuleiro tab, Cor cor) : base(tab, cor) {
+
+        }
         public override bool[,] movimentosPossiveis(){
             bool[,] mat= new bool[tab.linhas,tab.colunas];
             bool val=false;
@@ -52,7 +54,7 @@ namespace Xadrez {
                     pos.definirValores(posicao.Linha+2,posicao.Coluna);
                     if(tab.posicaoValida(pos)&&podeMover(pos)&&!tab.existePeca(pos)){
                         mat[pos.Linha,pos.Coluna]=true;
-                    }
+                     }
                 }            
             }
             if(!val){
