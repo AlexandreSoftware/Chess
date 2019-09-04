@@ -50,9 +50,9 @@
                 mat[pos.Linha,pos.Coluna]=true;
             }
             pos.definirValores(posicao.Linha,posicao.Coluna);
+            //Roque
             if(qteMovimentos==0){
                 bool validator=true;
-                //East
                 while(validator==true){
                     pos.definirValores(pos.Linha,pos.Coluna-1);
                     if(tab.posicaoValida(pos)&&tab.peca(pos) is Torre&&tab.peca(pos).qteMovimentos==0&&tab.peca(pos).cor==cor){
@@ -66,7 +66,6 @@
                     }
                 }
                 validator=true;
-                //WEST
                 pos.definirValores(posicao.Linha,posicao.Coluna);
                 while(validator==true){
                     pos.definirValores(pos.Linha,pos.Coluna+1);
@@ -81,6 +80,7 @@
                     }
                 }
             }
+            //
             return mat;
         }
         public override string ToString() {
