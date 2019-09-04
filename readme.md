@@ -1,0 +1,2 @@
+Bom, Aqui esta o codigo que eu vou me arrepender em uns 3 meses, mas whatever, foi divertido.
+A loucura acima e um jogo de xadrez, nao foi adicionar uma gui pois estou envergonhado de passar meses em um projeto desses, o meu objetivo nesse projeto e simples, fazer um jogo de xadrez baseado no que eu tenho que fazer no meu curso, porem eu quis fazer ele inteiro sozinho, me chame de burro, porem eu aprendi muita coisa nesse projeto
