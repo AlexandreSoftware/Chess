@@ -1,12 +1,23 @@
 ﻿namespace tabuleiro {
     class Tabuleiro {
-        public int linhas { get; set; }
-        public int colunas { get; set; }
+        public int linhas { get; private set; }
+        public int colunas { get; private set; }
         private Peca[,] pecas;
+        public Posicao potentialEmPassant;
+        public Posicao emPassant;
         public Tabuleiro(int linhas, int colunas) {
             this.colunas = colunas;
             this.linhas = linhas;
             pecas = new Peca[linhas, colunas];
+            
+        }
+        public Posicao casaAtraz(Posicao pos){
+            if(peca(pos).cor==Cor.Branco){
+                return new Posicao(pos.Linha+1,pos.Coluna);
+            }
+            else{
+                return new Posicao(pos.Linha-1,pos.Coluna);
+            }
         }
 
         public bool existePeca(Posicao pos) {
