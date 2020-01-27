@@ -1,7 +1,7 @@
 ﻿using System;
 using tabuleiro;
 using Xadrez;
-namespace Xadrez
+namespace Chess
 {
      class Program
     {

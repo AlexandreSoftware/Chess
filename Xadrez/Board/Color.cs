@@ -1,6 +1,6 @@
-﻿namespace tabuleiro{
-    enum Cor : int{
-        Branco,
+﻿namespace BoardNS{
+    enum Color : int{
+        White,
         Preto,
         Amarela,
         Azul,

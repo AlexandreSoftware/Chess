@@ -2,8 +2,8 @@
 using tabuleiro;
 using System.Threading;
 using System.IO;
-namespace Xadrez {
-    class Tela {
+namespace Chess {
+    class Screen {
         public static void imprimirXadrez(Tabuleiro tab) {
             Console.Clear();
             for (int i = 0; i < tab.linhas; i++) {

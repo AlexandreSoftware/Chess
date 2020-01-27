@@ -2,8 +2,8 @@
 using tabuleiro;
 using System.Threading;
 using System.Collections.Generic;
-namespace Xadrez {
-    class Xadrez{
+namespace Chess {
+    class ChessGame{
         bool gameIsFinished = false;
         HashSet<Peca> pecas;
         List<Peca> capturadosBrancos;

@@ -1,14 +1,14 @@
-﻿namespace tabuleiro {   
-    public class Posicao{
+﻿namespace BoardNS {   
+    public class Position{
         public int Linha { get; set; }
         public int Coluna { get; set; }
 
-        public void definirValores(int Linha,int Coluna){     
+        public void defineValues(int Linha,int Coluna){     
             this.Coluna= Coluna;
             this.Linha = Linha;
            
         }
-        public Posicao(int Linha,int Coluna){
+        public Position(int Linha,int Coluna){
             this.Coluna = Coluna;
             this.Linha = Linha;
         }

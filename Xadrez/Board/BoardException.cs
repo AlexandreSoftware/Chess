@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tabuleiro {
-    class TabuleiroException:Exception {
-        public TabuleiroException(string msg) : base(msg) {
+namespace ChessNS {
+    class BoardException:Exception {
+        public BoardException(string msg) : base(msg) {
     
         }
     }
