@@ -1,2 +1,11 @@
-Bom, Aqui esta o codigo que eu vou me arrepender em uns 3 meses, mas whatever, foi divertido.
-A loucura acima e um jogo de xadrez, nao foi adicionar uma gui pois estou envergonhado de passar meses em um projeto desses, o meu objetivo nesse projeto e simples, fazer um jogo de xadrez baseado no que eu tenho que fazer no meu curso, porem eu quis fazer ele inteiro sozinho, me chame de burro, porem eu aprendi muita coisa nesse projeto
+Currently refactoring this project and porting it to the latest version of dotnet
+also removing the junk in it
+
+
+Next i'll start working with dotnet core and maybe port it to asp.net
+
+TODO:
+    Port to dotnet 3.0
+    Refactor the project, rename the methods and classes to english
+    start working on a GUI for it, probably in HTML using ajax, but considering TKINTER or ASP.NET
+    containerize the project
