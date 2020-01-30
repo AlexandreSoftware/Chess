@@ -66,7 +66,7 @@ namespace Chess {
                 if(bor.piece(init.ToPosition()).color==currentPlayer){
                     Piece p1 = bor.piece(init.ToPosition());
                     bool[,] possiblemvmnts=p1.possibleMovements();
-                    Screen.possiblePosition(bor,possiblemvmnts);
+                    Screen.printChessFunc(bor,(i,j)=>(possiblemvmnts[i,j]));
                     Console.Write("Destiny: ");
                     return Screen.readChessPosition();
                             
