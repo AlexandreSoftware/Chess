@@ -25,7 +25,8 @@
         public Piece piece(int line, int column)=>pieces[line, column];
         public void putPiece(Piece p, Position pos) {
             if(pieceExists(pos)){
-                throw new BoardException("Ja existe uma peça nessa posiçao");
+                
+                throw new BoardException("There's already a piece in this position");
             }
             
             pieces[pos.line, pos.column] = p;
@@ -64,7 +65,7 @@
         }
         public void validatePosition(Position pos) {
             if (!validPosition(pos)&&!pieceExists(pos)==false) {
-                throw new BoardException("Posição Invalida!"); 
+                throw new BoardException("Invalid Position!"); 
             }
         }
     }

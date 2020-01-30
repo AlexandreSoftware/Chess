@@ -76,7 +76,7 @@ namespace Chess {
                     Console.WriteLine("  a b c d e f g h");
             }
             else{
-                throw new BoardException("ERRO:nao existe uma matriz");
+                throw new BoardException("There's no Matrix");
             }
             
         }
@@ -99,14 +99,14 @@ namespace Chess {
                 return null;
             }
             if(s==""||s==null){
-                throw new BoardException("Input invalido: tente novamente");
+                throw new BoardException("Invalid input: Try again");
             }
             else {
                 char coluna = s[0];
                 
                 bool val=int.TryParse(s[1] + "",out int linha);
                 if(val==false){
-                    throw new BoardException("Input invalido: tente novamente");
+                    throw new BoardException("Invalid input: Try again");
                 }
                 return new ChessPosition(coluna, linha);
             }

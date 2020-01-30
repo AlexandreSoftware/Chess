@@ -20,8 +20,8 @@
                 }
             }
             pos.defineValues(position.line,position.column);            
-            if(color==Color.White){
                 pos.defineValues(position.line-1,position.column);
+            if(color==Color.White){
                 if(bor.validPosition(pos)&&canMove(pos)&&!bor.pieceExists(pos)){
                     mat[pos.line,pos.column]=true;
                 }

@@ -167,7 +167,7 @@ namespace Chess {
             }
         }
         private ChessPosition getInit(){
-            Console.Write("Origem: ");
+            Console.Write("Origin: ");
             return Screen.readChessPosition();
         }
     
