@@ -1,11 +1,11 @@
 ﻿namespace BoardNS{
     enum Color : int{
         White,
-        Preto,
-        Amarela,
-        Azul,
-        Vermelha,
-        Verde,
-        Laranja
+        Black,
+        Yellow,
+        Blue,
+        Red,
+        Green,
+        Orange
     }
 }

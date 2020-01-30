@@ -1,23 +1,23 @@
-﻿namespace tabuleiro {
-    class Rainha : Peca {
-        public Rainha(Tabuleiro tab, Cor cor) : base(tab, cor) {
+﻿namespace BoardNS.Pieces {
+    class Queen : Piece {
+        public Queen(Board bor, Color color) : base(bor, color) {
 
         }
-        public override bool[,] movimentosPossiveis(){
+        public override bool[,] possibleMovements(){
             bool validator=true;
-            bool[,] mat=new bool[tab.linhas,tab.colunas];
-            Posicao pos= new Posicao(posicao.Linha,posicao.Coluna);
+            bool[,] mat=new bool[bor.lines,bor.columns];
+            Position pos= new Position(position.line,position.column);
             //East
             while(validator==true){
-                pos.definirValores(pos.Linha,pos.Coluna-1);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&ePecaInimiga(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line,pos.column-1);
+                if(bor.validPosition(pos)&&canMove(pos)&&isEnemyPiece(pos)){
+                    mat[pos.line,pos.column]=true;
                     validator=false;
                 }
-                else if(tab.posicaoValida(pos)&&podeMover(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                else if(bor.validPosition(pos)&&canMove(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
+                else if(bor.validPosition(pos)==true&&canMove(pos)==false){
                     validator=false;
                 }
                 else{
@@ -26,17 +26,17 @@
             }
             validator=true;
             //WEST
-            pos.definirValores(posicao.Linha,posicao.Coluna);
+            pos.defineValues(position.line,position.column);
             while(validator==true){
-                pos.definirValores(pos.Linha,pos.Coluna+1);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&ePecaInimiga(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line,pos.column+1);
+                if(bor.validPosition(pos)&&canMove(pos)&&isEnemyPiece(pos)){
+                    mat[pos.line,pos.column]=true;
                     validator=false;
                 }
-                else if(tab.posicaoValida(pos)&&podeMover(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                else if(bor.validPosition(pos)&&canMove(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
+                else if(bor.validPosition(pos)==true&&canMove(pos)==false){
                     validator=false;
                 }
                 else{
@@ -45,17 +45,17 @@
             }
             //North
             validator=true;
-            pos.definirValores(posicao.Linha,posicao.Coluna);
+            pos.defineValues(position.line,position.column);
             while(validator==true){
-                pos.definirValores(pos.Linha-1,pos.Coluna);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&ePecaInimiga(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line-1,pos.column);
+                if(bor.validPosition(pos)&&canMove(pos)&&isEnemyPiece(pos)){
+                    mat[pos.line,pos.column]=true;
                     validator=false;
                 }
-                else if(tab.posicaoValida(pos)&&podeMover(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                else if(bor.validPosition(pos)&&canMove(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
+                else if(bor.validPosition(pos)==true&&canMove(pos)==false){
                     validator=false;
                 }
                 else{
@@ -64,17 +64,17 @@
             }
             //South
             validator=true;
-            pos.definirValores(posicao.Linha,posicao.Coluna);
+            pos.defineValues(position.line,position.column);
             while(validator==true){
-                pos.definirValores(pos.Linha+1,pos.Coluna);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&ePecaInimiga(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line+1,pos.column);
+                if(bor.validPosition(pos)&&canMove(pos)&&isEnemyPiece(pos)){
+                    mat[pos.line,pos.column]=true;
                     validator=false;
                 }
-                else if(tab.posicaoValida(pos)&&podeMover(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                else if(bor.validPosition(pos)&&canMove(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
+                else if(bor.validPosition(pos)==true&&canMove(pos)==false){
                     validator=false;
                 }
                 else{
@@ -83,17 +83,17 @@
             }
             //NE
             validator=true;
-            pos.definirValores(posicao.Linha,posicao.Coluna);
+            pos.defineValues(position.line,position.column);
             while(validator==true){
-                pos.definirValores(pos.Linha-1,pos.Coluna-1);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&ePecaInimiga(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line-1,pos.column-1);
+                if(bor.validPosition(pos)&&canMove(pos)&&isEnemyPiece(pos)){
+                    mat[pos.line,pos.column]=true;
                     validator=false;
                 }
-                else if(tab.posicaoValida(pos)&&podeMover(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                else if(bor.validPosition(pos)&&canMove(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
+                else if(bor.validPosition(pos)==true&&canMove(pos)==false){
                     validator=false;
                 }
                 else{
@@ -102,17 +102,17 @@
             }
             //NW
             validator=true;
-            pos.definirValores(posicao.Linha,posicao.Coluna);
+            pos.defineValues(position.line,position.column);
             while(validator==true){
-                pos.definirValores(pos.Linha-1,pos.Coluna+1);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&ePecaInimiga(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line-1,pos.column+1);
+                if(bor.validPosition(pos)&&canMove(pos)&&isEnemyPiece(pos)){
+                    mat[pos.line,pos.column]=true;
                     validator=false;
                 }
-                else if(tab.posicaoValida(pos)&&podeMover(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                else if(bor.validPosition(pos)&&canMove(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
+                else if(bor.validPosition(pos)==true&&canMove(pos)==false){
                     validator=false;
                 }
                 else{
@@ -120,18 +120,18 @@
                 }
             }
             //SEk
-            pos.definirValores(posicao.Linha,posicao.Coluna);
+            pos.defineValues(position.line,position.column);
             validator=true;
             while(validator==true){
-                pos.definirValores(pos.Linha+1,pos.Coluna-1);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&ePecaInimiga(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line+1,pos.column-1);
+                if(bor.validPosition(pos)&&canMove(pos)&&isEnemyPiece(pos)){
+                    mat[pos.line,pos.column]=true;
                     validator=false;
                 }
-                else if(tab.posicaoValida(pos)&&podeMover(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                else if(bor.validPosition(pos)&&canMove(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
+                else if(bor.validPosition(pos)==true&&canMove(pos)==false){
                     validator=false;
                 }
                 else{
@@ -139,18 +139,18 @@
                 }
             }
             //SW
-            pos.definirValores(posicao.Linha,posicao.Coluna);
+            pos.defineValues(position.line,position.column);
             validator=true;
             while(validator==true){
-                pos.definirValores(pos.Linha+1,pos.Coluna+1);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&ePecaInimiga(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line+1,pos.column+1);
+                if(bor.validPosition(pos)&&canMove(pos)&&isEnemyPiece(pos)){
+                    mat[pos.line,pos.column]=true;
                     validator=false;
                 }
-                else if(tab.posicaoValida(pos)&&podeMover(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                else if(bor.validPosition(pos)&&canMove(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
+                else if(bor.validPosition(pos)==true&&canMove(pos)==false){
                     validator=false;
                 }
                 else{

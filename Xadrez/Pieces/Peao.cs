@@ -1,65 +1,65 @@
-﻿namespace tabuleiro {
-    class Peao : Peca {
-        public Peao(Tabuleiro tab, Cor cor) : base(tab, cor) {
+﻿namespace BoardNS.Pieces {
+    class Pawn : Piece {
+        public Pawn(Board bor, Color color) : base(bor, color) {
 
         }
-        public override bool[,] movimentosPossiveis(){
-            bool[,] mat= new bool[tab.linhas,tab.colunas];
-            Posicao pos=new Posicao(0,0);
-            pos.definirValores(posicao.Linha,posicao.Coluna);
-            if(tab.emPassant!=null){
-                pos.definirValores(posicao.Linha,posicao.Coluna-1);
-                if(pos.Linha==tab.emPassant.Linha&&pos.Coluna==tab.emPassant.Coluna){
-                    Posicao posa = tab.casaAtraz(tab.emPassant);
-                    mat[posa.Linha,posa.Coluna]=true;
+        public override bool[,] possibleMovements(){
+            bool[,] mat= new bool[bor.lines,bor.columns];
+            Position pos=new Position(0,0);
+            pos.defineValues(position.line,position.column);
+            if(bor.emPassant!=null){
+                pos.defineValues(position.line,position.column-1);
+                if(pos.line==bor.emPassant.line&&pos.column==bor.emPassant.column){
+                    Position posa = bor.squareBefore(bor.emPassant);
+                    mat[posa.line,posa.column]=true;
                 }
-                pos.definirValores(posicao.Linha,posicao.Coluna+1);
-                if(pos.Linha==tab.emPassant.Linha&&pos.Coluna==tab.emPassant.Coluna){
-                    Posicao posa = tab.casaAtraz(tab.emPassant);
-                    mat[posa.Linha,posa.Coluna]=true;
+                pos.defineValues(position.line,position.column+1);
+                if(pos.line==bor.emPassant.line&&pos.column==bor.emPassant.column){
+                    Position posa = bor.squareBefore(bor.emPassant);
+                    mat[posa.line,posa.column]=true;
                 }
             }
-            pos.definirValores(posicao.Linha,posicao.Coluna);            
-            if(cor==Cor.Branco){
-                pos.definirValores(posicao.Linha-1,posicao.Coluna);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&!tab.existePeca(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+            pos.defineValues(position.line,position.column);            
+            if(color==Color.White){
+                pos.defineValues(position.line-1,position.column);
+                if(bor.validPosition(pos)&&canMove(pos)&&!bor.pieceExists(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                pos.definirValores(pos.Linha,pos.Coluna-1);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&tab.existePeca(pos)){
-                        mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line,pos.column-1);
+                if(bor.validPosition(pos)&&canMove(pos)&&bor.pieceExists(pos)){
+                        mat[pos.line,pos.column]=true;
                 }
-                pos.definirValores(pos.Linha,pos.Coluna+2);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&tab.existePeca(pos)){
-                        mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line,pos.column+2);
+                if(bor.validPosition(pos)&&canMove(pos)&&bor.pieceExists(pos)){
+                        mat[pos.line,pos.column]=true;
                 }
-                if(qteMovimentos==0){
-                    pos.definirValores(posicao.Linha-2,posicao.Coluna);
-                    if(tab.posicaoValida(pos)&&podeMover(pos)&&!tab.existePeca(pos)){
-                        mat[pos.Linha,pos.Coluna]=true;
-                        tab.potentialEmPassant=new Posicao(pos.Linha,pos.Coluna);
+                if(mvmtAmount==0){
+                    pos.defineValues(position.line-2,position.column);
+                    if(bor.validPosition(pos)&&canMove(pos)&&!bor.pieceExists(pos)){
+                        mat[pos.line,pos.column]=true;
+                        bor.potentialEmPassant=new Position(pos.line,pos.column);
                     }
                 }            
                 
             }
             else{
-                pos.definirValores(posicao.Linha+1,posicao.Coluna);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&!tab.existePeca(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(position.line+1,position.column);
+                if(bor.validPosition(pos)&&canMove(pos)&&!bor.pieceExists(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                pos.definirValores(pos.Linha,pos.Coluna-1);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&tab.existePeca(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line,pos.column-1);
+                if(bor.validPosition(pos)&&canMove(pos)&&bor.pieceExists(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                pos.definirValores(pos.Linha,pos.Coluna+2);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&tab.existePeca(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line,pos.column+2);
+                if(bor.validPosition(pos)&&canMove(pos)&&bor.pieceExists(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                if(qteMovimentos==0){
-                    pos.definirValores(posicao.Linha+2,posicao.Coluna);
-                    if(tab.posicaoValida(pos)&&podeMover(pos)&&!tab.existePeca(pos)){
-                        mat[pos.Linha,pos.Coluna]=true;
-                        tab.potentialEmPassant=new Posicao(pos.Linha,pos.Coluna);
+                if(mvmtAmount==0){
+                    pos.defineValues(position.line+2,position.column);
+                    if(bor.validPosition(pos)&&canMove(pos)&&!bor.pieceExists(pos)){
+                        mat[pos.line,pos.column]=true;
+                        bor.potentialEmPassant=new Position(pos.line,pos.column);
                     }
                 }
             }

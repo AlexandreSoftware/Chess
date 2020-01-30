@@ -5,14 +5,14 @@
         private Piece[,] pieces;
         public Position potentialEmPassant;
         public Position emPassant;
-        public Tabuleiro(int lines, int columns) {
+        public Board(int lines, int columns) {
             this.columns = columns;
             this.lines = lines;
-            Pieces = new Piece[lines, columns];
+            pieces = new Piece[lines, columns];
             
         }
         public Position squareBefore(Position pos){
-            if(Piece(pos).color==color.White){
+            if(piece(pos).color==Color.White){
                 return new Position(pos.line+1,pos.column);
             }
             else{
@@ -20,16 +20,16 @@
             }
         }
 
-        public bool pieceExists(Position pos)=>Piece(pos) != null;
-        public Piece Piece(Position pos)=>Pieces[pos.line,pos.column];
-        public Piece Piece(int line, int column)=>Pieces[line, column];
+        public bool pieceExists(Position pos)=>piece(pos) != null;
+        public Piece piece(Position pos)=>pieces[pos.line,pos.column];
+        public Piece piece(int line, int column)=>pieces[line, column];
         public void putPiece(Piece p, Position pos) {
             if(pieceExists(pos)){
-                throw new TabuleiroException("Ja existe uma peça nessa posiçao");
+                throw new BoardException("Ja existe uma peça nessa posiçao");
             }
             
-            Pieces[pos.line, pos.column] = p;
-            p.Position = pos;
+            pieces[pos.line, pos.column] = p;
+            p.position = pos;
             
         }
         public bool validPosition(Position pos) {
@@ -41,30 +41,30 @@
         
 
         public Piece withdrawPiece(Position pos) {
-            if (Piece(pos) == null) {
+            if (piece(pos) == null) {
                 return null;
             }
 
-            Piece aux = Piece(pos);
-            aux.Position = null;
-            Pieces[pos.line, pos.column] = null;
+            Piece aux = piece(pos);
+            aux.position = null;
+            pieces[pos.line, pos.column] = null;
             return aux;
         }
-        public Piece movePiece(Position initPos,Position endPos) {
+        public Piece movepiece(Position initPos,Position endPos) {
             
             if (validPosition(endPos)) {
                 Piece p1;   
                 p1 = withdrawPiece(endPos);
-                putPiece(Piece(initPos),endPos);
+                putPiece(piece(initPos),endPos);
                 withdrawPiece(initPos);
-                Piece(endPos).Position=endPos;
+                piece(endPos).position=endPos;
                 return p1;
             }          
             return null;
         }
         public void validatePosition(Position pos) {
-            if (!validPosition(pos)&&!existePiece(pos)==false) {
-                throw new TabuleiroException("Posição Invalida!"); 
+            if (!validPosition(pos)&&!pieceExists(pos)==false) {
+                throw new BoardException("Posição Invalida!"); 
             }
         }
     }

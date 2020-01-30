@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessNS {
+namespace BoardNS {
     class BoardException:Exception {
         public BoardException(string msg) : base(msg) {
     

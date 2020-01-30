@@ -1,81 +1,81 @@
-﻿namespace tabuleiro {
-    class Rei : Peca{
-        public Rei(Tabuleiro tab,Cor cor): base(tab,cor) {
+﻿namespace BoardNS.Pieces {
+    class King: Piece{
+        public King(Board bor,Color color): base(bor,color) {
 
         }
-        public override bool[,] movimentosPossiveis(){
-            bool[,] mat = new  bool[tab.linhas,tab.colunas];
-            Posicao pos=new Posicao(0,0);
+        public override bool[,] possibleMovements(){
+            bool[,] mat = new  bool[bor.lines,bor.columns];
+            Position pos=new Position(0,0);
             //topo
-            pos.definirValores(posicao.Linha-1,posicao.Coluna);  
-            if(tab.posicaoValida(pos)&&podeMover(pos)){
-                mat[pos.Linha,pos.Coluna]=true;
+            pos.defineValues(position.line-1,position.column);  
+            if(bor.validPosition(pos)&&canMove(pos)){
+                mat[pos.line,pos.column]=true;
             }
             //esquerda
-            pos.definirValores(posicao.Linha,posicao.Coluna-1);
-            if(tab.posicaoValida(pos)&&podeMover(pos)){
+            pos.defineValues(position.line,position.column-1);
+            if(bor.validPosition(pos)&&canMove(pos)){
                 
-                mat[pos.Linha,pos.Coluna]=true;
+                mat[pos.line,pos.column]=true;
             }
             //direita
-            pos.definirValores(posicao.Linha,posicao.Coluna+1);
-            if(tab.posicaoValida(pos)&&podeMover(pos)){ 
-                mat[pos.Linha,pos.Coluna]=true;
+            pos.defineValues(position.line,position.column+1);
+            if(bor.validPosition(pos)&&canMove(pos)){ 
+                mat[pos.line,pos.column]=true;
             }
             //ne
-            pos.definirValores(posicao.Linha-1,posicao.Coluna-1);
-            if(tab.posicaoValida(pos)&&podeMover(pos)){
-                mat[pos.Linha,pos.Coluna]=true;
+            pos.defineValues(position.line-1,position.column-1);
+            if(bor.validPosition(pos)&&canMove(pos)){
+                mat[pos.line,pos.column]=true;
             }
             //nw
-            pos.definirValores(posicao.Linha-1,posicao.Coluna+1);
-            if(tab.posicaoValida(pos)&&podeMover(pos)){
-                mat[pos.Linha,pos.Coluna]=true;
+            pos.defineValues(position.line-1,position.column+1);
+            if(bor.validPosition(pos)&&canMove(pos)){
+                mat[pos.line,pos.column]=true;
             }
             //sul
-            pos.definirValores(posicao.Linha+1,posicao.Coluna);
-            if(tab.posicaoValida(pos)&&podeMover(pos)){
-                mat[pos.Linha,pos.Coluna]=true;
+            pos.defineValues(position.line+1,position.column);
+            if(bor.validPosition(pos)&&canMove(pos)){
+                mat[pos.line,pos.column]=true;
             }
             //se
-            pos.definirValores(posicao.Linha+1,posicao.Coluna-1);
-            if(tab.posicaoValida(pos)&&podeMover(pos)){
+            pos.defineValues(position.line+1,position.column-1);
+            if(bor.validPosition(pos)&&canMove(pos)){
                 
-                mat[pos.Linha,pos.Coluna]=true;
+                mat[pos.line,pos.column]=true;
             }
             //sw
-            pos.definirValores(posicao.Linha+1,posicao.Coluna+1); 
-            if(tab.posicaoValida(pos)&&podeMover(pos)){
+            pos.defineValues(position.line+1,position.column+1); 
+            if(bor.validPosition(pos)&&canMove(pos)){
                 
-                mat[pos.Linha,pos.Coluna]=true;
+                mat[pos.line,pos.column]=true;
             }
-            pos.definirValores(posicao.Linha,posicao.Coluna);
+            pos.defineValues(position.line,position.column);
             //Roque
-            if(qteMovimentos==0){
+            if(mvmtAmount==0){
                 bool validator=true;
                 while(validator==true){
-                    pos.definirValores(pos.Linha,pos.Coluna-1);
-                    if(tab.posicaoValida(pos)&&tab.peca(pos) is Torre&&tab.peca(pos).qteMovimentos==0&&tab.peca(pos).cor==cor){
-                        mat[pos.Linha,pos.Coluna]=true;
+                    pos.defineValues(pos.line,pos.column-1);
+                    if(bor.validPosition(pos)&&bor.piece(pos) is Tower&&bor.piece(pos).mvmtAmount==0&&bor.piece(pos).color==color){
+                        mat[pos.line,pos.column]=true;
                     }
-                    if(tab.posicaoValida(pos)&&!podeMover(pos)){
+                    if(bor.validPosition(pos)&&!canMove(pos)){
                         validator=false;
                     }
-                    else if(!tab.posicaoValida(pos)==true){
+                    else if(!bor.validPosition(pos)==true){
                         validator=false;
                     }
                 }
                 validator=true;
-                pos.definirValores(posicao.Linha,posicao.Coluna);
+                pos.defineValues(position.line,position.column);
                 while(validator==true){
-                    pos.definirValores(pos.Linha,pos.Coluna+1);
-                    if(tab.posicaoValida(pos)&&tab.peca(pos) is Torre&&tab.peca(pos).qteMovimentos==0&&tab.peca(pos).cor==cor){
-                        mat[pos.Linha,pos.Coluna]=true;
+                    pos.defineValues(pos.line,pos.column+1);
+                    if(bor.validPosition(pos)&&bor.piece(pos) is Tower&&bor.piece(pos).mvmtAmount==0&&bor.piece(pos).color==color){
+                        mat[pos.line,pos.column]=true;
                     }
-                    if(tab.posicaoValida(pos)&&!podeMover(pos)){
+                    if(bor.validPosition(pos)&&!canMove(pos)){
                         validator=false;
                     }
-                    else if(!tab.posicaoValida(pos)==true){
+                    else if(!bor.validPosition(pos)==true){
                         validator=false;
                     }
                 }

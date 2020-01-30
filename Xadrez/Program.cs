@@ -1,6 +1,5 @@
 ﻿using System;
-using tabuleiro;
-using Xadrez;
+using BoardNS;
 namespace Chess
 {
      class Program
@@ -8,7 +7,7 @@ namespace Chess
         static void Main(string[] args)
         {
             
-            Xadrez jogo = new Xadrez();
+            ChessGame jogo = new ChessGame();
             jogo.GameLoop();
             
 

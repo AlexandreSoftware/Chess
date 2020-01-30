@@ -1,22 +1,22 @@
 ﻿namespace BoardNS {   
     public class Position{
-        public int Linha { get; set; }
-        public int Coluna { get; set; }
+        public int line { get; set; }
+        public int column { get; set; }
 
-        public void defineValues(int Linha,int Coluna){     
-            this.Coluna= Coluna;
-            this.Linha = Linha;
+        public void defineValues(int line,int column){     
+            this.column= column;
+            this.line = line;
            
         }
-        public Position(int Linha,int Coluna){
-            this.Coluna = Coluna;
-            this.Linha = Linha;
+        public Position(int line,int column){
+            this.column = column;
+            this.line = line;
         }
         public override string ToString()
         {
-            return Linha
+            return line
                 +","
-                +Coluna;
+                +column;
         }
 
     }

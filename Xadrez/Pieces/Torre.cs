@@ -1,22 +1,22 @@
-﻿namespace tabuleiro {
-    class Torre : Peca{
-        public Torre(Tabuleiro tab,Cor cor): base(tab,cor) {
+﻿namespace BoardNS.Pieces {
+    class Tower : Piece{
+        public Tower(Board bor,Color color): base(bor,color) {
 
         }
-        public override bool[,] movimentosPossiveis(){
+        public override bool[,] possibleMovements(){
             bool validator=true;
-            bool[,] mat=new bool[tab.linhas,tab.colunas];
-            Posicao pos= new Posicao(posicao.Linha,posicao.Coluna);
+            bool[,] mat=new bool[bor.lines,bor.columns];
+            Position pos= new Position(position.line,position.column);
             //East
             while(validator==true){
-                pos.definirValores(pos.Linha,pos.Coluna-1);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&ePecaInimiga(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line,pos.column-1);
+                if(bor.validPosition(pos)&&canMove(pos)&&isEnemyPiece(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)&&podeMover(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                else if(bor.validPosition(pos)&&canMove(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
+                else if(bor.validPosition(pos)==true&&canMove(pos)==false){
                     validator=false;
                 }
                 else{
@@ -25,16 +25,16 @@
             }
             validator=true;
             //WEST
-            pos.definirValores(posicao.Linha,posicao.Coluna);
+            pos.defineValues(position.line,position.column);
             while(validator==true){
-                pos.definirValores(pos.Linha,pos.Coluna+1);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&ePecaInimiga(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line,pos.column+1);
+                if(bor.validPosition(pos)&&canMove(pos)&&isEnemyPiece(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)&&podeMover(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                else if(bor.validPosition(pos)&&canMove(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
+                else if(bor.validPosition(pos)==true&&canMove(pos)==false){
                     validator=false;
                 }
                 else{
@@ -43,16 +43,16 @@
             }
             //North
             validator=true;
-            pos.definirValores(posicao.Linha,posicao.Coluna);
+            pos.defineValues(position.line,position.column);
             while(validator==true){
-                pos.definirValores(pos.Linha-1,pos.Coluna);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&ePecaInimiga(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line-1,pos.column);
+                if(bor.validPosition(pos)&&canMove(pos)&&isEnemyPiece(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)&&podeMover(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                else if(bor.validPosition(pos)&&canMove(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
+                else if(bor.validPosition(pos)==true&&canMove(pos)==false){
                     validator=false;
                 }
                 else{
@@ -61,49 +61,49 @@
             }
             //South
             validator=true;
-            pos.definirValores(posicao.Linha,posicao.Coluna);
+            pos.defineValues(position.line,position.column);
             while(validator==true){
-                pos.definirValores(pos.Linha+1,pos.Coluna);
-                if(tab.posicaoValida(pos)&&podeMover(pos)&&ePecaInimiga(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                pos.defineValues(pos.line+1,pos.column);
+                if(bor.validPosition(pos)&&canMove(pos)&&isEnemyPiece(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)&&podeMover(pos)){
-                    mat[pos.Linha,pos.Coluna]=true;
+                else if(bor.validPosition(pos)&&canMove(pos)){
+                    mat[pos.line,pos.column]=true;
                 }
-                else if(tab.posicaoValida(pos)==true&&podeMover(pos)==false){
+                else if(bor.validPosition(pos)==true&&canMove(pos)==false){
                     validator=false;
                 }
                 else{
                     validator=false;
                 }
             }
-            pos.definirValores(posicao.Linha,posicao.Coluna);
+            pos.defineValues(position.line,position.column);
             //Roque
-            if(qteMovimentos==0){
+            if(mvmtAmount==0){
                 validator=true;
                 while(validator==true){
-                    pos.definirValores(pos.Linha,pos.Coluna-1);
-                    if(tab.posicaoValida(pos)&&tab.peca(pos) is Rei&&tab.peca(pos).qteMovimentos==0&&tab.peca(pos).cor==cor){
-                        mat[pos.Linha,pos.Coluna]=true;
+                    pos.defineValues(pos.line,pos.column-1);
+                    if(bor.validPosition(pos)&&bor.piece(pos) is Queen&&bor.piece(pos).mvmtAmount==0&&bor.piece(pos).color==color){
+                        mat[pos.line,pos.column]=true;
                     }
-                    if(tab.posicaoValida(pos)&&!podeMover(pos)){
+                    if(bor.validPosition(pos)&&!canMove(pos)){
                         validator=false;
                     }
-                    else if(!tab.posicaoValida(pos)==true){
+                    else if(!bor.validPosition(pos)==true){
                         validator=false;
                     }
                 }
                 validator=true;
-                pos.definirValores(posicao.Linha,posicao.Coluna);
+                pos.defineValues(position.line,position.column);
                 while(validator==true){
-                    pos.definirValores(pos.Linha,pos.Coluna+1);
-                    if(tab.posicaoValida(pos)&&tab.peca(pos) is Rei&&tab.peca(pos).qteMovimentos==0&&tab.peca(pos).cor==cor){
-                        mat[pos.Linha,pos.Coluna]=true;
+                    pos.defineValues(pos.line,pos.column+1);
+                    if(bor.validPosition(pos)&&bor.piece(pos) is Queen&&bor.piece(pos).mvmtAmount==0&&bor.piece(pos).color==color){
+                        mat[pos.line,pos.column]=true;
                     }
-                    if(tab.posicaoValida(pos)&&!podeMover(pos)){
+                    if(bor.validPosition(pos)&&!canMove(pos)){
                         validator=false;
                     }
-                    else if(!tab.posicaoValida(pos)==true){
+                    else if(!bor.validPosition(pos)==true){
                         validator=false;
                     }
                 }

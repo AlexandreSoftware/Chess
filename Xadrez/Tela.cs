@@ -1,19 +1,20 @@
 ﻿using System;
-using tabuleiro;
+using BoardNS.Pieces;
+using BoardNS;
 using System.Threading;
 using System.IO;
 namespace Chess {
     class Screen {
-        public static void imprimirXadrez(Tabuleiro tab) {
+        public static void printChess(Board bor) {
             Console.Clear();
-            for (int i = 0; i < tab.linhas; i++) {
+            for (int i = 0; i < bor.lines; i++) {
                 System.Console.Write(8 - i + " ");
-                for (int j = 0; j < tab.colunas; j++) {
-                    if (tab.peca(i, j) == null) {
+                for (int j = 0; j < bor.columns; j++) {
+                    if (bor.piece(i, j) == null) {
                         Console.Write("- ");
                     }
                     else {
-                        Tela.imprimirPeca(tab.peca(i, j));
+                        Screen.printPiece(bor.piece(i, j));
                         Console.Write(" ");
                     }
 
@@ -23,16 +24,16 @@ namespace Chess {
             }
             Console.WriteLine("  a b c d e f g h");
         }
-        public static void imprimirTabuleiro(Tabuleiro tab) {
+        public static void printBoard(Board bor) {
             Console.Clear();
-            for (int i = 0; i < tab.linhas; i++) {
+            for (int i = 0; i < bor.lines; i++) {
                 
-                for (int j = 0; j < tab.colunas; j++) {
-                    if (tab.peca(i, j) == null) {
+                for (int j = 0; j < bor.columns; j++) {
+                    if (bor.piece(i, j) == null) {
                         Console.Write("- ");
                     }
                     else {
-                        imprimirPeca(tab.peca(i, j));
+                        printPiece(bor.piece(i, j));
                         Console.Write(" ");
                     }
 
@@ -41,31 +42,31 @@ namespace Chess {
                 Console.WriteLine();
             }
          }
-         public static void posicoesPossiveis(Tabuleiro tab,bool[,] tabpossivel) {
+         public static void possiblePosition(Board bor,bool[,] borpossivel) {
             Console.Clear();
-            if(tabpossivel!=null){
-            for (int i = 0; i < tab.linhas; i++) {
+            if(borpossivel!=null){
+            for (int i = 0; i < bor.lines; i++) {
                 Console.Write(8 - i + " ");
-                for (int j = 0; j < tab.colunas; j++) {
-                    if (tab.peca(i, j) != null&&tabpossivel[i,j]==true) {
+                for (int j = 0; j < bor.columns; j++) {
+                    if (bor.piece(i, j) != null&&borpossivel[i,j]==true) {
                         ConsoleColor actualConsoleColor=Console.BackgroundColor;
                         Console.BackgroundColor=ConsoleColor.Red;
-                        Tela.imprimirPeca(tab.peca(i, j));
+                        Screen.printPiece(bor.piece(i, j));
                         Console.Write(" ");
                         Console.BackgroundColor=actualConsoleColor;
                     }
-                    else if(tab.peca(i, j) == null&&tabpossivel[i,j]==true){
+                    else if(bor.piece(i, j) == null&&borpossivel[i,j]==true){
                         ConsoleColor actualConsoleColor=Console.BackgroundColor;
                         Console.BackgroundColor=ConsoleColor.Blue;
                         Console.Write("- ");
                         Console.BackgroundColor=actualConsoleColor;
                     }
-                    else if (tab.peca(i, j) == null&&tabpossivel[i,j]==false) {
+                    else if (bor.piece(i, j) == null&&borpossivel[i,j]==false) {
                         
                         Console.Write("- ");
                     }
                     else {
-                        Tela.imprimirPeca(tab.peca(i, j));
+                        Screen.printPiece(bor.piece(i, j));
                         Console.Write(" ");
                     }
                     
@@ -75,22 +76,22 @@ namespace Chess {
                     Console.WriteLine("  a b c d e f g h");
             }
             else{
-                throw new TabuleiroException("ERRO:nao existe uma matriz");
+                throw new BoardException("ERRO:nao existe uma matriz");
             }
             
         }
-        public static void imprimirPeca(Peca peca) {
-            if (peca.cor == Cor.Branco) {
-                System.Console.Write(peca);
+        public static void printPiece(Piece piece) {
+            if (piece.color == Color.White) {
+                System.Console.Write(piece);
             }
             else {
                 ConsoleColor aux = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                System.Console.Write(peca);
+                System.Console.Write(piece);
                 Console.ForegroundColor = aux;
             }
         }
-        public static PosicaoXadrez lerPosicaoXadrez() {
+        public static ChessPosition readChessPosition() {
             string s = Console.ReadLine();
             s=s.ToLower();
             if (s == "exit") {
@@ -98,30 +99,30 @@ namespace Chess {
                 return null;
             }
             if(s==""||s==null){
-                throw new TabuleiroException("Input invalido: tente novamente");
+                throw new BoardException("Input invalido: tente novamente");
             }
             else {
                 char coluna = s[0];
                 
                 bool val=int.TryParse(s[1] + "",out int linha);
                 if(val==false){
-                    throw new TabuleiroException("Input invalido: tente novamente");
+                    throw new BoardException("Input invalido: tente novamente");
                 }
-                return new PosicaoXadrez(coluna, linha);
+                return new ChessPosition(coluna, linha);
             }
         }
-        public static void imprimirXadrezdelay(Tabuleiro tab){
+        public static void printChessDelay(Board bor){
             Console.Clear();
-            for (int i = 0; i < tab.linhas; i++) {
+            for (int i = 0; i < bor.lines; i++) {
                 Thread.Sleep(10);
                 Console.Write(8 - i + " ");
-                for (int j = 0; j < tab.colunas; j++) {
+                for (int j = 0; j < bor.columns; j++) {
                     Thread.Sleep(10);
-                    if (tab.peca(i, j) == null) {
+                    if (bor.piece(i, j) == null) {
                         Console.Write("- ");
                     }
                     else {
-                        Tela.imprimirPeca(tab.peca(i, j));
+                        Screen.printPiece(bor.piece(i, j));
                         Console.Write(" ");
                     }
 
