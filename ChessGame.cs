@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using BoardNS;
 using BoardNS.Pieces;
 using System.Collections.Generic;
@@ -194,7 +195,7 @@ namespace Chess {
             addpiece(new Bishop(bor, Color.White), new ChessPosition('f', 1).ToPosition());
             addpiece(new Horse(bor, Color.White), new ChessPosition('g', 1).ToPosition());
             addpiece(new Tower(bor, Color.White), new ChessPosition('h', 1).ToPosition());
-            Screen.printChessDelay(bor);
+            Screen.printChessAction(bor,()=>Thread.Sleep(10));
         }
         private HashSet<Piece> piecesingame(Color Color){
             HashSet<Piece> piecesingame=new HashSet<Piece>();
@@ -266,7 +267,7 @@ namespace Chess {
             bool val=true;
             while(val){
                 Console.Clear();
-                Screen.printChessDelay(bor);
+                Screen.printChessAction(bor,()=>Thread.Sleep(10));
                 Console.WriteLine("PROMOTION: choose a Piece:");
                 Console.WriteLine("1-Tower\n2-Bishop\n3-Horse\n4-Queen");
                 char a =Console.ReadKey().KeyChar;

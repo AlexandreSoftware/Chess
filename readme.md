@@ -10,6 +10,8 @@ TODO:
 
     Refactor the project, 
         
-    start working on a GUI for it, probably in HTML using ajax, but considering TKINTER or ASP.NET
+    Document its methods
+
+    Start working on a GUI for it, probably in HTML using ajax, but considering TKINTER or ASP.NET
     
     containerize the project
