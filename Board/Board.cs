@@ -11,41 +11,24 @@
             pieces = new Piece[lines, columns];
             
         }
-        public Position squareBefore(Position pos){
-            if(piece(pos).color==Color.White){
-                return new Position(pos.line+1,pos.column);
-            }
-            else{
-                return new Position(pos.line-1,pos.column);
-            }
-        }
+        public Position squareBefore(Position pos)=>
+         piece(pos).color==Color.White?
+         new Position(pos.line+1,pos.column) :
+         new Position(pos.line-1,pos.column);
 
         public bool pieceExists(Position pos)=>piece(pos) != null;
         public Piece piece(Position pos)=>pieces[pos.line,pos.column];
         public Piece piece(int line, int column)=>pieces[line, column];
-        public void putPiece(Piece p, Position pos) {
-            if(pieceExists(pos)){
-                
-                throw new BoardException("There's already a piece in this position");
-            }
-            
-            pieces[pos.line, pos.column] = p;
-            p.position = pos;
-            
+        public void putPiece(Piece p, Position pos) 
+        {
+            if(pieceExists(pos)) throw new BoardException("There's already a piece in this position");
+            pieces[pos.line, pos.column].position=pos;
         }
-        public bool validPosition(Position pos) {
-            if (pos.line<0||pos.line>=lines||pos.column<0||pos.column>=columns) {
-                return false;
-            }
-            return true;
-        }
-        
+        public bool validPosition(Position pos)=>pos.line<0||pos.line>=lines||pos.column<0||pos.column>=columns?false: true;
 
         public Piece withdrawPiece(Position pos) {
-            if (piece(pos) == null) {
+            if (piece(pos) == null)
                 return null;
-            }
-
             Piece aux = piece(pos);
             aux.position = null;
             pieces[pos.line, pos.column] = null;
@@ -63,10 +46,9 @@
             }          
             return null;
         }
-        public void validatePosition(Position pos) {
-            if (!validPosition(pos)&&!pieceExists(pos)==false) {
+        public void validatePosition(Position pos){
+            if (!validPosition(pos)&&!pieceExists(pos)==false)
                 throw new BoardException("Invalid Position!"); 
-            }
         }
     }
 }
