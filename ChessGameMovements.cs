@@ -89,15 +89,15 @@ namespace Chess{
             {
                 Piece white=bor.piece(0,i);
                 if(white!=null&&white is Pawn&& white.color==Color.White){
-                    promocao(new Position(0,i));
+                    promotion(new Position(0,i));
                 }
                 Piece black=bor.piece(7,i);
                 if(black!=null&&black is Pawn&& black.color==Color.Black){
-                    promocao(new Position(0,i));
+                    promotion(new Position(0,i));
                 }
             }
         }
-        private void promocao(Position dest){
+        private void promotion(Position dest){
             bool val=true;
             while(val){
                 Console.Clear();
@@ -106,28 +106,15 @@ namespace Chess{
                 Console.WriteLine("1-Tower\n2-Bishop\n3-Horse\n4-Queen");
                 char a =Console.ReadKey().KeyChar;
                 if(Char.IsDigit(a)){
-                    Piece temp;
                     Position pos = new Position(dest.line,dest.column);
                     if(int.TryParse(a.ToString(),out int i)){
                             switch (i)
                             {
                                 case 1:
-                                    temp =bor.withdrawPiece(dest);
-                                    pieces.Remove(temp);                                
-                                    addpiece(new Tower(bor,temp.color),pos);
-                                    while(temp.mvmtAmount!=bor.piece(dest).mvmtAmount){
-                                        bor.piece(dest).increasemvmtAmount();
-                                    }
-                                    val=false;
+                                    val=promoteUnit(new Tower(bor,bor.piece(dest).color),dest);
                                 break;
                                 case 2:
-                                    temp =bor.withdrawPiece(dest);
-                                    pieces.Remove(temp);                                
-                                    addpiece(new Bishop(bor,temp.color),pos);
-                                    while(temp.mvmtAmount!=bor.piece(dest).mvmtAmount){
-                                        bor.piece(dest).increasemvmtAmount();
-                                    }
-                                    val=false;
+                                    //bishop
                                 break;
                                 case 3:
                                     temp =bor.withdrawPiece(dest);
@@ -157,5 +144,15 @@ namespace Chess{
                     }
                 }
             }
+        
+        private bool promoteUnit(Piece p,Position pos){
+            Piece temp =bor.withdrawPiece(pos);
+            pieces.Remove(temp);                                
+            addpiece(p,pos);
+            while(temp.mvmtAmount!=bor.piece(pos).mvmtAmount){
+                bor.piece(pos).increasemvmtAmount();
+            }
+            return false;
+        }
     }
 }

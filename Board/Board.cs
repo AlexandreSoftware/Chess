@@ -22,7 +22,7 @@
         public void putPiece(Piece p, Position pos) 
         {
             if(pieceExists(pos)) throw new BoardException("There's already a piece in this position");
-            pieces[pos.line, pos.column]=p
+            pieces[pos.line, pos.column]=p;
             p.position=pos;
         }
         public bool validPosition(Position pos)=>pos.line<0||pos.line>=lines||pos.column<0||pos.column>=columns?false: true;
