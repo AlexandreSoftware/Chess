@@ -12,7 +12,7 @@
             
         }
         public Position squareBefore(Position pos)=>
-         piece(pos).color==Color.White?
+         piece(pos)!=null&&piece(pos).color==Color.White?
          new Position(pos.line+1,pos.column) :
          new Position(pos.line-1,pos.column);
 
