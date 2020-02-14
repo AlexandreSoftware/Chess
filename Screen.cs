@@ -23,10 +23,8 @@ class Screen {
     }
     /// <summary>
     /// Prints the Chess board, with a custom action before each print
-    /// <para>    
-    /// Board: the board
-    /// del:The Action to be performed
-    /// </para>
+    /// <param name="bor">The board</param>
+    /// <param name="del">The Action to be performed</param>
     /// </summary>
     public static void printChessAction(Board bor,Action del){
         Console.Clear();
@@ -84,12 +82,15 @@ class Screen {
     public static void printPiece(Piece piece, ConsoleColor? color=null) {   
         string message= piece==null?"- ":piece+" ";
         if(color==null){
-            changeConsoleColorandWrite(Console.BackgroundColor,message);
-        }
+            ConsoleColor temp=piece!=null?
+            piece.color==Color.White?ConsoleColor.White:ConsoleColor.Yellow
+                   :ConsoleColor.White;
+            changeConsoleColorandWrite(Console.BackgroundColor,message,temp);
+        }   
         else {
             ConsoleColor temp=piece!=null?
                 piece.color==Color.White?ConsoleColor.White:ConsoleColor.Yellow
-                :ConsoleColor.White;
+                   :ConsoleColor.White;
             changeConsoleColorandWrite((ConsoleColor)color,message,temp);
         }
     }
