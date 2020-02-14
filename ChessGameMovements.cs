@@ -84,6 +84,12 @@ namespace Chess{
             }
             return true;
         }
+        /// <summary>
+        /// Checks if a unit is ready for promotion,
+        /// when the unit is promoted it promotes using the promotion method
+        /// </summary>
+        /// <br />
+        /// <seealso cref="promotion"/>
         private void checkPromotion(){
             for (int i = 0; i < bor.columns; i++)
             {
@@ -100,11 +106,12 @@ namespace Chess{
             }
         }
         /// <summary>
-        ///     Clears the screen,
-        ///     then prompts the user to choose a unit for promotion, then promotes the unit based on the input
+        ///  Clears the screen,
+        ///  then prompts the user to choose a unit for promotion, then promotes the unit based on the input
         /// </summary>
-        /// 
-        /// <param name="dest"></param>
+        /// <para />    
+        /// <seealso cref="checkPromotion"/>
+        /// <param name="dest">The Position of the piece about to be promoted</param>
         private void promotion(Position dest){
             bool val=true;
             while(val){
@@ -130,10 +137,10 @@ namespace Chess{
                         default:
                             Console.WriteLine("ERROR: Invalid Input");
                         break;                     
-                        }
                     }
                 }
             }
+        }
         /// <summary>
         /// promote a unit, removing the old piece from the board, and pieces in the play
         /// </summary>
