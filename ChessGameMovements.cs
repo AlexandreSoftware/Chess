@@ -90,64 +90,59 @@ namespace Chess{
                 Piece white=bor.piece(0,i);
                 if(white!=null&&white is Pawn&& white.color==Color.White){
                     promotion(new Position(0,i));
+                    return;
                 }
                 Piece black=bor.piece(7,i);
                 if(black!=null&&black is Pawn&& black.color==Color.Black){
                     promotion(new Position(0,i));
+                    return;
                 }
             }
         }
+        /// <summary>
+        ///     Clears the screen,
+        ///     then prompts the user to choose a unit for promotion, then promotes the unit based on the input
+        /// </summary>
+        /// 
+        /// <param name="dest"></param>
         private void promotion(Position dest){
             bool val=true;
             while(val){
                 Console.Clear();
                 Screen.printChessAction(bor,()=>Thread.Sleep(10));
-                Console.WriteLine("PROMOTION: choose a Piece:");
-                Console.WriteLine("1-Tower\n2-Bishop\n3-Horse\n4-Queen");
+                Console.WriteLine("PROMOTION: choose a Piece:\n"+
+                    "1-Tower\n2-Bishop\n3-Horse\n4-Queen");
                 char a =Console.ReadKey().KeyChar;
-                if(Char.IsDigit(a)){
-                    Position pos = new Position(dest.line,dest.column);
-                    if(int.TryParse(a.ToString(),out int i)){
-                            switch (i)
-                            {
-                                case 1:
-                                    val=promoteUnit(new Tower(bor,bor.piece(dest).color),dest);
-                                break;
-                                case 2:
-                                    //bishop
-                                break;
-                                case 3:
-                                    temp =bor.withdrawPiece(dest);
-                                    pieces.Remove(temp);                                
-                                    addpiece(new Horse(bor,temp.color),pos);
-                                    while(temp.mvmtAmount!=bor.piece(dest).mvmtAmount){
-                                        bor.piece(dest).increasemvmtAmount();
-                                    }
-                                    val=false;
-                                break;
-                                
-                                case 4:
-                                    temp =bor.withdrawPiece(dest);
-                                    pieces.Remove(temp);                                
-                                    addpiece(new Queen(bor,temp.color),pos);
-                                    while(temp.mvmtAmount!=bor.piece(dest).mvmtAmount){
-                                        bor.piece(dest).increasemvmtAmount();
-                                    }
-                                    val=false;
-                                break;
-                                
-                                default:
-                                    Console.WriteLine("ERROR: Invalid Input");
-                                break;                     
-                                }
-                            }
+                if(Char.IsDigit(a)&&int.TryParse(a.ToString(),out int i)){
+                    switch (i){
+                        case 1:
+                            val=promoteUnit(new Tower(bor,bor.piece(dest).color),dest);
+                        break;
+                        case 2:
+                           val=promoteUnit(new Bishop(bor,bor.piece(dest).color),dest);
+                        break;
+                        case 3:
+                            val=promoteUnit(new Horse(bor,bor.piece(dest).color),dest);
+                        break;
+                        case 4:
+                            val=promoteUnit(new Queen(bor,bor.piece(dest).color),dest);
+                        break;
+                        default:
+                            Console.WriteLine("ERROR: Invalid Input");
+                        break;                     
+                        }
                     }
                 }
             }
-        
+        /// <summary>
+        /// promote a unit, removing the old piece from the board, and pieces in the play
+        /// </summary>
+        /// <param name="p">the piece to be promoted</param>
+        /// <param name="pos">the position of the promoted unit</param>
+        /// <returns></returns>
         private bool promoteUnit(Piece p,Position pos){
             Piece temp =bor.withdrawPiece(pos);
-            pieces.Remove(temp);                                
+            pieces.Remove(temp);     
             addpiece(p,pos);
             while(temp.mvmtAmount!=bor.piece(pos).mvmtAmount){
                 bor.piece(pos).increasemvmtAmount();
