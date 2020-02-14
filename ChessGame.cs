@@ -86,12 +86,12 @@ namespace Chess {
             Piece p=executeMovement(possiblemvmnts,init.ToPosition(),dest.ToPosition());
             checkPromotion();
             Piece.increasemvmtAmount();
-            if(isincheck(adversary(currentPlayer))){
+            if(isincheck(currentPlayer)){
                 undoMovement(p,dest.ToPosition(),init.ToPosition());
                 throw new BoardException("You can't put yourself in check");
             }
-            else if(isincheck(currentPlayer)){
-                checkColor=adversary(currentPlayer);
+            else if(isincheck(adversary(currentPlayer))){
+                checkColor=currentPlayer;
             }
             else{
                 checkColor=null;
