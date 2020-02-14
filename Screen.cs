@@ -83,8 +83,8 @@ class Screen {
         string message= piece==null?"- ":piece+" ";
         if(color==null){
             ConsoleColor temp=piece!=null?
-            piece.color==Color.White?ConsoleColor.White:ConsoleColor.Yellow
-                   :ConsoleColor.White;
+                piece.color==Color.White?ConsoleColor.White:ConsoleColor.Yellow
+                    :ConsoleColor.White;
             changeConsoleColorandWrite(Console.BackgroundColor,message,temp);
         }   
         else {
@@ -101,7 +101,6 @@ class Screen {
             if(s==""||s==null)throw new BoardException("Invalid input: Try again");
             else {
                 char coluna = s[0];
-                
                 bool val=int.TryParse(s[1] + "",out int linha);
                 if(val==false){
                     throw new BoardException("Invalid input: Try again");

@@ -106,38 +106,49 @@ namespace Chess{
             }
         }
         /// <summary>
-        ///  Clears the screen,
-        ///  then prompts the user to choose a unit for promotion, then promotes the unit based on the input
+        /// Gets the promotion input
         /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        public bool getPromotionInput(out int i){
+            i=5;
+            Console.Clear();
+            Screen.printChessAction(bor,()=>Thread.Sleep(10));
+            Console.WriteLine("PROMOTION: choose a Piece:\n"+
+                "1-Tower\n2-Bishop\n3-Horse\n4-Queen");
+            char a =Console.ReadKey().KeyChar;
+            return Char.IsDigit(a)&&int.TryParse(a.ToString(),out i)&&i<5;
+        }
+        /// <summary>
+        /// Calls getPromotionIput to make the user choose a promotion target
+        /// <Br />
+        /// Then promotes the unit based on the input, with the method checkPromotion
+        /// </summary>
+        /// <para />
+        /// <seealso cref="getPromotionInput"/>
+        /// <br />
         /// <para />    
         /// <seealso cref="checkPromotion"/>
         /// <param name="dest">The Position of the piece about to be promoted</param>
         private void promotion(Position dest){
             bool val=true;
-            while(val){
-                Console.Clear();
-                Screen.printChessAction(bor,()=>Thread.Sleep(10));
-                Console.WriteLine("PROMOTION: choose a Piece:\n"+
-                    "1-Tower\n2-Bishop\n3-Horse\n4-Queen");
-                char a =Console.ReadKey().KeyChar;
-                if(Char.IsDigit(a)&&int.TryParse(a.ToString(),out int i)){
-                    switch (i){
-                        case 1:
-                            val=promoteUnit(new Tower(bor,bor.piece(dest).color),dest);
-                        break;
-                        case 2:
-                           val=promoteUnit(new Bishop(bor,bor.piece(dest).color),dest);
-                        break;
-                        case 3:
-                            val=promoteUnit(new Horse(bor,bor.piece(dest).color),dest);
-                        break;
-                        case 4:
-                            val=promoteUnit(new Queen(bor,bor.piece(dest).color),dest);
-                        break;
-                        default:
-                            Console.WriteLine("ERROR: Invalid Input");
-                        break;                     
-                    }
+            while(!getPromotionInput(out int i)){
+                switch (i){
+                    case 1:
+                        val=promoteUnit(new Tower(bor,bor.piece(dest).color),dest);
+                    break;
+                    case 2:
+                        val=promoteUnit(new Bishop(bor,bor.piece(dest).color),dest);
+                    break;
+                    case 3:
+                        val=promoteUnit(new Horse(bor,bor.piece(dest).color),dest);
+                    break;
+                    case 4:
+                        val=promoteUnit(new Queen(bor,bor.piece(dest).color),dest);
+                    break;
+                    default:
+                        Console.WriteLine("ERROR: Invalid Input");
+                    break;                     
                 }
             }
         }
