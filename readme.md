@@ -1,6 +1,6 @@
 I dont want to keep working on this,
 
-and i wnat to focus on other things and projects, so this is deprecated
+and i want to focus on other things and projects, so this is deprecated
 
 Things i would do if making a console chess game wasn't intensely pointless
 TODO:
